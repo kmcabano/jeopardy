@@ -4,15 +4,15 @@
 
   // 1.2 An array for the multiple choice reponses to appear in
 
-  // 1.3 Have a turn variable
-    // 1.3.1 While J! usually has 3 players, I think I will just do two
+  //// 1.3 Have a turn variable
+  ////   1.3.1 While J! usually has 3 players, I think I will just do two
 
-  // 1.4. Winner variable
-    // 1.4.1 no winner (game in play), winner, or tie
+  //// 1.4. Winner variable
+    //// 1.4.1 no winner (game in play), winner, or tie
 
   // 1.5 Player score
 
-  // 1.6 Final Jeopardy Boolean
+  //// 1.6 Final Jeopardy Boolean
 
   // 1.7 empty FJ wager
 
