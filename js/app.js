@@ -20,7 +20,11 @@ boardEl.addEventListener('click', handleClick)
 
 /*--------------Functions--------------*/
 
-function render(){
+function init() {
+  
+}
+
+function render() {
 
 }
 
@@ -61,10 +65,16 @@ function handleClick(e) {
     var clickedCat = 5
   }
   if (clickedIdx > 5) {
+    if (e.target.classList.contains('clicked')) {
+      clueEl.innerText = null
+      return
+    }
     if (boardSq[clickedIdx] !== null) {
       boardSq[clickedIdx].innerText = null
+      boardSq[clickedIdx].classList.add('clicked')
       clueEl.innerText = `${(catEl[clickedCat][clickedVal].clue)}`
     }
   } 
+e.target.removeEventListener('click', handleClick)
 render();
 }
