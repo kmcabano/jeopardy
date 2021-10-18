@@ -36,6 +36,7 @@ h1 {
   grid-template-rows: repeat(6, 1fr);
   border: 1px solid black;
   width: 700px;
+  /* width: 60vmax; */
   aspect-ratio: 16/9;
   margin-left: 100px;
 }
@@ -45,4 +46,6 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  flex-wrap: nowrap;
 }
