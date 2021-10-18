@@ -13,6 +13,7 @@ let boardSq = [... squaresEl]
 const boardEl = document.querySelector('.board')
 const clueEl = document.querySelector('.clue')
 const twoEl = document.querySelectorAll('.two')
+const messageEl = document.querySelector('.message')
 
 /*-----------Event Listeners-----------*/
 
@@ -24,7 +25,7 @@ init()
 
 function init() {
   boardSq[Math.floor(Math.random() * (36 - 18) + 18)].classList.add('daily-double')
-  console.log(document.querySelector('.daily-double'))
+  console.log(document.querySelector('#daily-double'))
 }
 
 function render() {
@@ -60,7 +61,11 @@ function handleClick(e) {
     if (e.target.classList.contains('clicked')) {
       return
     }
-    if (boardSq[clickedIdx] !== null) {
+    if (e.target.classList.contains(`daily-double`)) {
+      boardSq[clickedIdx].innerText = null
+      boardSq[clickedIdx].classList.add('clicked')
+      messageEl.innerText = `Daily Double!`
+    } else if (boardSq[clickedIdx] !== null && boardSq[clickedIdx]) {
       boardSq[clickedIdx].innerText = null
       boardSq[clickedIdx].classList.add('clicked')
       clueEl.innerText = `${(catEl[clickedCat][clickedVal].clue)}`
