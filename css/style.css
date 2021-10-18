@@ -22,6 +22,11 @@ html {
   src: url('/fonts/swiss-911-extra-compr9c22f.ttf');
 }
 
+@font-face {
+  font-family: 'ITCKorinna';
+  src: url('/fonts/korinnastd-regular.otf');
+}
+
 body {
   /* Use a system font, if none are available use an available sans-sarif font */
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -40,16 +45,27 @@ h1 {
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(6, 1fr);
   border: 3px solid black;
-  width: 700px;
-  /* width: 60vmax; */
+  width: 800px;
   aspect-ratio: 16/9;
   margin-left: 100px;
+}
+
+.clue {
+  background-color: #010a78; 
+  color: white;
+  font-family: ITCKorinna;
+  text-shadow: black 2px 2px;
+  font-size: 20px;
 }
 
 .squares {
   border: 3px solid black;
   background-color: #010a78; 
+  font-family: Swiss911;
+  font-size: 22px;
+  line-height: 20px;
   color: white;
+  text-shadow: black 1px 1px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -58,49 +74,37 @@ h1 {
 }
 
 .squares.one {
-  font-family: Swiss911;
   color: #d7a04b;
   font-size: 40px;
-  -webkit-text-stroke: 0.5px #6e5761;
   text-shadow: black 2px 2px;
 }
 
 .squares.two {
-  font-family: Swiss911;
   color: #d7a04b;
   font-size: 40px;
-  -webkit-text-stroke: 0.5px #6e5761;
   text-shadow: black 2px 2px;
 }
 
 .squares.three {
-  font-family: Swiss911;
   color: #d7a04b;
   font-size: 40px;
-  -webkit-text-stroke: 0.5px #6e5761;
   text-shadow: black 2px 2px;
 }
 
 .squares.four {
-  font-family: Swiss911;
   color: #d7a04b;
   font-size: 40px;
-  -webkit-text-stroke: 0.5px #6e5761;
   text-shadow: black 2px 2px;
 }
 
 .squares.five {
-  font-family: Swiss911;
   color: #d7a04b;
   font-size: 40px;
-  -webkit-text-stroke: 0.5px #6e5761;
   text-shadow: black 2px 2px;
 }
 
 .squares.six {
-  font-family: Swiss911;
   color: #d7a04b;
   font-size: 40px;
-  -webkit-text-stroke: 0.5px #6e5761;
   text-shadow: black 2px 2px;
 }

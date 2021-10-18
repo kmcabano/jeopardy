@@ -117,7 +117,7 @@ function handleClick(e) {
     } else if (boardSq[clickedIdx] !== null && boardSq[clickedIdx]) {
       boardSq[clickedIdx].innerText = null
       boardSq[clickedIdx].classList.add('clicked')
-      clueEl.innerText = `${(catEl[clickedCat][clickedVal].clue)}`
+      clueEl.innerText = `${(catEl[clickedCat][clickedVal].clue.toUpperCase())}`
       boardAns[0].innerText = `${(catEl[clickedCat][clickedVal].response)}`
       boardAns[1].innerText = `${(catEl[clickedCat][clickedVal].wrongOne)}`
       boardAns[2].innerText = `${(catEl[clickedCat][clickedVal].wrongTwo)}`
