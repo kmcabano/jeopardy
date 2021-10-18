@@ -20,8 +20,11 @@ boardEl.addEventListener('click', handleClick)
 
 /*--------------Functions--------------*/
 
+init()
+
 function init() {
-  
+  boardSq[Math.floor(Math.random() * (36 - 18) + 18)].classList.add('daily-double')
+  console.log(document.querySelector('.daily-double'))
 }
 
 function render() {
