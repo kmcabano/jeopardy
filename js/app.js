@@ -18,6 +18,9 @@ const bodyEl = document.querySelector('body')
 const squaresEl = document.querySelectorAll(".squares")
 let boardSq = [... squaresEl]
 const boardEl = document.querySelector('.board')
+const answersEl = document.querySelectorAll('.answer')
+let boardAns = [... answersEl]
+const answerBoardEl = document.querySelector('.answer-board')
 const clueEl = document.querySelector('.clue')
 const twoEl = document.querySelectorAll('.two')
 const messageEl = document.querySelector('.message')
@@ -41,6 +44,8 @@ const messageEl = document.querySelector('.message')
 
   // 2.12 final jeopardy responses
 
+/*----------------Audio----------------*/
+
 /*-----------Event Listeners-----------*/
 
 boardEl.addEventListener('click', handleClick)
@@ -52,17 +57,35 @@ init()
 function init() {
   boardSq[Math.floor(Math.random() * (36 - 18) + 18)].classList.add('daily-double')
   console.log(document.querySelector('#daily-double'))
+  // 4.1 Initialize function
+    // 4.1.1 Array of 36 elements mapped to the board
+      // 4.1.1.1 index 0-5 will contain category names, 6-11 "$100", 12-17 "$200", etc. for the appropriate amounts
+      // 4.1.1.2 call a function that randomly assigns one element at index 6-35 the class of "daily-double"
+    // 4.1.2 Status will display a welcome message
+    // 4.1.3 Initialize winner variable to null
+    // 4.1.4 Initialize player scores to $0
+    // 4.1.5 Initialize FJ variable to false
+    // 4.1.6 Display a message for player 1 to select the first clue
+    // 4.1.7 Initialize clue to null
+    // 4.1.7 Call render function
 }
 
 function render() {
-
+  // 4.2 Render function
+    // 4.2.1 Loop over board array, change content of items as needed according to their updated values
+      // For example, the submit answer function that will run when an answer is clicked will empty the element if the response was correct, so the box will then display blank
+    // 4.2.2 Loop over reponses array, change content as needed according to their update values
+    // 4.2.3 Display whatever string is contained in the clue box const as text
+    // 4.2. Message(s)
+    // 4.2. Update each player's scores to display their variable's value as text
+    // 4.2. check for Final Jeopardy - do nothing if false, call Final Jeopardy init if true
 }
 
 function handleClick(e) {
   let catEl = [catA, catB, catC, catD, catE, catF]
 	const clickedIdx = e.target.id.slice(2)
   let clickedVal =
-    clickedIdx > 5 && clickedIdx < 12
+      clickedIdx > 5 && clickedIdx < 12
     ? 0
     : clickedIdx > 11 && clickedIdx < 18
     ? 1
@@ -72,7 +95,7 @@ function handleClick(e) {
     ? 3
     : 4
   let clickedCat =
-    e.target.className.substring(8) === `one`
+      e.target.className.substring(8) === `one`
     ? 0
     : e.target.className.substring(8) === `two`
     ? 1
@@ -95,8 +118,20 @@ function handleClick(e) {
       boardSq[clickedIdx].innerText = null
       boardSq[clickedIdx].classList.add('clicked')
       clueEl.innerText = `${(catEl[clickedCat][clickedVal].clue)}`
+      boardAns[0].innerText = `${(catEl[clickedCat][clickedVal].response)}`
+      boardAns[1].innerText = `${(catEl[clickedCat][clickedVal].wrongOne)}`
+      boardAns[2].innerText = `${(catEl[clickedCat][clickedVal].wrongTwo)}`
+      boardAns.sort(() => Math.random() - 0.5)
     }
   } 
 e.target.removeEventListener('click', handleClick)
 render();
 }
+
+// 6.1.4 If the clue selected has the class "daily-double", call the daily double function
+      // 6.1.4.1 Play daily double sound
+      // 6.1.4.2 Display input box and submit button for wager
+      // 6.1.4.3 After that's submitted, the clue is displayed along with the answer choices - no turn variable is assigned this time
+      // 6.1.4.4 If answered correctly, add the wager amount to the player's score, clear the clue and reponses, and call for a new clue to be selected if there are still clue values in the array/on the board
+      // 6.1.4.5 If answered incorrectly, add the wager amount to the player's score, clear the clue and reponses, and call for a new clue to be selected if there are still clue values in the array/on the board
+      // 6.1.4.6 Display a message that it is the same player's turn to select the next clue
