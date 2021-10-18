@@ -39,7 +39,7 @@ body {
 .container {
   display: grid; 
   grid-template-columns: 1.91fr 0.59fr 0.5fr; 
-  grid-template-rows: 0.41fr 1.8fr 0.79fr 1fr; 
+  grid-template-rows: 0.41fr 0.9fr 1.7fr 1fr 1fr; 
   gap: 10px 10px; 
   /* width: 100%; 
   height: 75%;  */
@@ -54,7 +54,7 @@ h1 {
 }
 
 .board {
-  grid-area: 2 / 1 / 4 / 2;
+  grid-area: 2 / 1 / 5 / 2;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(6, 1fr);
@@ -64,17 +64,20 @@ h1 {
 }
 
 .clue {
-  grid-area: 2 / 2 / 3 / 3;
+  grid-area: 3 / 2 / 4 / 4  ;
   background-color: #010a78; 
   color: white;
   font-family: ITCKorinna;
   text-shadow: black 2px 2px;
   font-size: 20px;
-  width: 400px;
+  border: 4px solid black;
 }
 
 .message {
-  grid-area: 3 / 2 / 4 / 4;
+  grid-area: 4 / 2 / 5 / 4;
+  background-color: #010a78;
+  border: 4px solid black;
+
 }
 
 .answer-board {
@@ -84,7 +87,7 @@ h1 {
   gap: 0px 0px; 
   grid-template-areas: 
     "a1 a2 a3"; 
-  grid-area: 4 / 1 / 5 / 4;
+  grid-area: 5 / 1 / 6 / 4;
   background-color: #010a78; 
   color: white;
   font-family: ITCKorinna;
@@ -93,11 +96,19 @@ h1 {
   height: 100px;
   text-align: center;
   vertical-align: sub;
+  border: 4px solid black;
+
 }
 
-.a1 { grid-area: a1; }
-.a2 { grid-area: a2; }
-.a3 { grid-area: a3; }
+.a1 {
+  grid-area: a1;
+}
+.a2 {
+  grid-area: a2;
+}
+.a3 {
+  grid-area: a3;
+}
 button { grid-area: 1 / 3 / 2 / 4; }
 
 .squares {
@@ -117,15 +128,16 @@ button { grid-area: 1 / 3 / 2 / 4; }
 
 .scores {
   display: grid; 
-  grid-template-columns: 1fr; 
-  grid-template-rows: 0.7fr 1.3fr 0.7fr 1.3fr; 
+  grid-template-columns: 1fr 1fr; 
+  grid-template-rows: 0.7fr 1.3fr; 
   gap: 0px 0px; 
   grid-template-areas: 
-    "player-one-name"
-    "player-one-score"
-    "player-two-name"
-    "player-two-score"; 
-  grid-area: 2 / 3 / 3 / 4; 
+    "player-one-name player-two-name"
+    "player-one-score player-two-score"; 
+  grid-area: 2 / 2 / 3 / 4; 
+  background-color: #010a78;
+  border: 4px solid black;
+  color: white;
 }
 
 .player-one-name {
@@ -143,7 +155,6 @@ button { grid-area: 1 / 3 / 2 / 4; }
 .player-two-score {
   grid-area: player-two-score;
 }
-
 
 .squares.one {
   color: #d7a04b;
