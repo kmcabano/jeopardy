@@ -4,6 +4,8 @@
 
 let turn, winner
 let isFinalJeopardy = false
+let playerOneScore = 0
+let playerTwoScore = 0
   // 1.2 An array for the multiple choice reponses to appear in
 
   // 1.5 Player score
@@ -24,6 +26,9 @@ const answerBoardEl = document.querySelector('.answer-board')
 const clueEl = document.querySelector('.clue')
 const twoEl = document.querySelectorAll('.two')
 const messageEl = document.querySelector('.message')
+const scoreOneEl = document.querySelector('.player-one-score')
+const scoreTwoEl = document.querySelector('.player-two-score')
+
  // 2.2 Status - whose turn, game over, etc.
 
   // 2.5 Input boxes
@@ -37,8 +42,6 @@ const messageEl = document.querySelector('.message')
   // 2.8 Buzzer
 
   // 2.9 Buttons
-
-  // 2.10 Player scores (dollars)
 
   // 2.11 An element for the Daily Double
 
@@ -56,7 +59,8 @@ init()
 
 function init() {
   boardSq[Math.floor(Math.random() * (36 - 18) + 18)].classList.add('daily-double')
-  console.log(document.querySelector('#daily-double'))
+  scoreOneEl.innerText = `$${playerOneScore}`
+  scoreTwoEl.innerText = `$${playerTwoScore}`
   // 4.1 Initialize function
     // 4.1.1 Array of 36 elements mapped to the board
       // 4.1.1.1 index 0-5 will contain category names, 6-11 "$100", 12-17 "$200", etc. for the appropriate amounts

@@ -27,6 +27,16 @@ html {
   src: url('/fonts/korinnastd-regular.otf');
 }
 
+@font-face {
+  font-family: HelveticaInseratLT;
+  src: url('/fonts/helveticainseratltstd-roman.otf');
+}
+
+@font-face {
+  font-family: Univers75;
+  src: url('/fonts/Univers\ CE\ 75\ Black.ttf');
+}
+
 body {
   /* Use a system font, if none are available use an available sans-sarif font */
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -41,8 +51,6 @@ body {
   grid-template-columns: 1.91fr 0.59fr 0.5fr; 
   grid-template-rows: 0.41fr 0.9fr 1.7fr 1fr 1fr; 
   gap: 10px 10px; 
-  /* width: 100%; 
-  height: 75%;  */
 }
 
 .header {
@@ -58,7 +66,7 @@ h1 {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(6, 1fr);
-  border: 4px solid black;
+  border: 2px solid black;
   width: 800px;
   aspect-ratio: 16/9;
 }
@@ -71,6 +79,9 @@ h1 {
   text-shadow: black 2px 2px;
   font-size: 20px;
   border: 4px solid black;
+  text-align: center;
+  display: flex;
+  align-items: center;
 }
 
 .message {
@@ -109,13 +120,24 @@ h1 {
 .a3 {
   grid-area: a3;
 }
-button { grid-area: 1 / 3 / 2 / 4; }
+button {
+  grid-area: 1 / 3 / 2 / 4;
+  margin-top: 10px;
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+  padding: 0px 0px;
+  border-radius: 15px;
+  font-size: 16px;
+  text-align: center;
+  background-color: inherit;
+}
 
 .squares {
   border: 3px solid black;
   background-color: #010a78; 
-  font-family: Swiss911;
-  font-size: 22px;
+  font-family: HelveticaInseratLT;
+  font-size: 18px;
   line-height: 20px;
   color: white;
   text-shadow: black 1px 1px;
@@ -138,6 +160,9 @@ button { grid-area: 1 / 3 / 2 / 4; }
   background-color: #010a78;
   border: 4px solid black;
   color: white;
+  text-align: center;
+  font-family: ITCKorinna;
+  font-size: 20px;
 }
 
 .player-one-name {
@@ -146,6 +171,8 @@ button { grid-area: 1 / 3 / 2 / 4; }
 
 .player-one-score {
   grid-area: player-one-score;
+  font-family: Univers75;
+  font-size: 120%;
 }
 
 .player-two-name {
@@ -154,40 +181,48 @@ button { grid-area: 1 / 3 / 2 / 4; }
 
 .player-two-score {
   grid-area: player-two-score;
+  font-family: Univers75;
+  font-size: 25px;
 }
 
 .squares.one {
   color: #d7a04b;
   font-size: 40px;
+  font-family: Swiss911;
   text-shadow: black 2px 2px;
 }
 
 .squares.two {
   color: #d7a04b;
   font-size: 40px;
+  font-family: Swiss911;
   text-shadow: black 2px 2px;
 }
 
 .squares.three {
   color: #d7a04b;
   font-size: 40px;
+  font-family: Swiss911;
   text-shadow: black 2px 2px;
 }
 
 .squares.four {
   color: #d7a04b;
   font-size: 40px;
+  font-family: Swiss911;
   text-shadow: black 2px 2px;
 }
 
 .squares.five {
   color: #d7a04b;
   font-size: 40px;
+  font-family: Swiss911;
   text-shadow: black 2px 2px;
 }
 
 .squares.six {
   color: #d7a04b;
   font-size: 40px;
+  font-family: Swiss911;
   text-shadow: black 2px 2px;
 }
