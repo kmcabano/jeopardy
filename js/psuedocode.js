@@ -1,51 +1,4 @@
-// 1. Define & store necessary variables
 
-  // 1.1 The game board will be an array
-
-  // 1.2 An array for the multiple choice reponses to appear in
-
-  //// 1.3 Have a turn variable
-  ////   1.3.1 While J! usually has 3 players, I think I will just do two
-
-  //// 1.4. Winner variable
-    //// 1.4.1 no winner (game in play), winner, or tie
-
-  // 1.5 Player score
-
-  //// 1.6 Final Jeopardy Boolean
-
-  // 1.7 empty FJ wager
-
-  // 1.8 empty FJ reponses
-
-// 2. Cache element references, this will be especially necessary for using the DOM
-
-  // 2.1 The board/each square
-
-  // 2.2 Status - whose turn, game over, etc.
-
-  // 2.3 Additional message element
-    // 2.3.1 Daily double alert message, also to prompt players to look away while other player are entering FJ responses, rules, etc
-
-  // 2.4 A clue display box
-
-  // 2.5 Input boxes
-    // 2.5.1 Wager for final jeopardy and for daily double(s)
-    // 2.5.2 Player names
-
-  // 2.6 Final Jeopardy timer
-
-  // 2.7 Final Jeopardy category
-  
-  // 2.8 Buzzer
-
-  // 2.9 Buttons
-
-  // 2.10 Player scores (dollars)
-
-  // 2.11 An element for the Daily Double
-
-  // 2.12 final jeopardy responses
 
 // 3. Store audio files
 
@@ -80,10 +33,6 @@
     // 4.2. Update each player's scores to display their variable's value as text
     // 4.2. check for Final Jeopardy - do nothing if false, call Final Jeopardy init if true
   
-// 5. Define & store necessary constants
-
-  // 5.1 For the sake of organization, store clues and answers in a separate js file, similar to the boostrap code-along exercise
-    // All past J! games are archived online, so I will get real categories and their clues and responses (and will create my own multiple choice options)
 
 // 6. Include event listener(s)
 

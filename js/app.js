@@ -4,6 +4,13 @@
 
 let turn, winner
 let isFinalJeopardy = false
+  // 1.2 An array for the multiple choice reponses to appear in
+
+  // 1.5 Player score
+
+  // 1.7 empty FJ wager
+
+  // 1.8 empty FJ reponses
 
 /*------Cached Element References------*/
 
@@ -14,6 +21,25 @@ const boardEl = document.querySelector('.board')
 const clueEl = document.querySelector('.clue')
 const twoEl = document.querySelectorAll('.two')
 const messageEl = document.querySelector('.message')
+ // 2.2 Status - whose turn, game over, etc.
+
+  // 2.5 Input boxes
+    // 2.5.1 Wager for final jeopardy and for daily double(s)
+    // 2.5.2 Player names
+
+  // 2.6 Final Jeopardy timer
+
+  // 2.7 Final Jeopardy category
+  
+  // 2.8 Buzzer
+
+  // 2.9 Buttons
+
+  // 2.10 Player scores (dollars)
+
+  // 2.11 An element for the Daily Double
+
+  // 2.12 final jeopardy responses
 
 /*-----------Event Listeners-----------*/
 
