@@ -102,6 +102,7 @@ function namePlayerOne(e) {
   if (e.key === 'Enter') {
   nameOneEl.textContent = e.target.value
   nameTwoInput.addEventListener('keydown', namePlayerTwo)
+  nameTwoInput.focus()
   }
 }
 
