@@ -2,8 +2,7 @@
 
 /*----------Variables (state)----------*/
 
-let turn, winner, keyPressed
-let isFinalJeopardy = false
+let turn, winner, keyPressed, isFinalJeopardy
 let playerOneScore = 0
 let playerTwoScore = 0
   // 1.2 An array for the multiple choice reponses to appear in
@@ -56,11 +55,8 @@ const scoreTwoEl = document.querySelector('.player-two-score')
 
 /*-----------Event Listeners-----------*/
 
-boardEl.addEventListener('click', clueSelect)
 answerBoardEl.addEventListener('click', answerSelect)
-document.addEventListener('keydown', buzz)
 nameOneInput.addEventListener('keydown', namePlayerOne)
-nameTwoInput.addEventListener('keydown', namePlayerTwo)
 
 /*--------------Functions--------------*/
 
@@ -71,11 +67,10 @@ function init() {
   scoreOneEl.innerText = `$${playerOneScore}`
   scoreTwoEl.innerText = `$${playerTwoScore}`
   turn = null
+  isFinalJeopardy = false
   messageEl.innerText = `Input Player Names Above`
   nameOneInput.focus()
   // boardEl.removeEventListener('click', clueSelect)
-  nameTwoInput.removeEventListener('keydown', namePlayerTwo)
-  document.removeEventListener('keydown', buzz)
   console.log(document.getElementsByClassName('daily-double'))
   // 4.1 Initialize function
     // 4.1.1 Array of 36 elements mapped to the board
