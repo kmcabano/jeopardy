@@ -73,7 +73,7 @@ function init() {
   turn = null
   messageEl.innerText = `Input Player Names Above`
   nameOneInput.focus()
-  boardEl.removeEventListener('click', clueSelect)
+  // boardEl.removeEventListener('click', clueSelect)
   nameTwoInput.removeEventListener('keydown', namePlayerTwo)
   document.removeEventListener('keydown', buzz)
   console.log(document.getElementsByClassName('daily-double'))
@@ -112,7 +112,7 @@ function namePlayerOne(e) {
 function namePlayerTwo(e) {
   if (e.key === 'Enter') {
     nameTwoEl.innerText = e.target.value
-    messageEl.innerText = 'Player 1, select a clue!'
+    messageEl.innerText = `${nameOneEl.innerText}, select a clue!`
     boardEl.addEventListener('click', clueSelect)
   }
 }
@@ -149,8 +149,8 @@ function clueSelect(e) {
     if (e.target.classList.contains(`daily-double`)) {
       boardSq[clickedIdx].innerText = null
       boardSq[clickedIdx].classList.add('clicked')
-      messageEl.innerText = `DAILY DOUBLE`
-      messageEl.classList.add(`daily-double-message`)
+      clueEl.innerText = `DAILY DOUBLE`
+      clueEl.classList.add(`daily-double-message`)
     } else if (boardSq[clickedIdx] !== null && boardSq[clickedIdx]) {
       messageEl.innerText = ''
       boardSq[clickedIdx].innerText = null
@@ -183,9 +183,19 @@ function buzz(e) {
 function answerSelect(e) {
   if (e.target.classList.contains(`response`)) {
     console.log(`correct`)
+    if (turn === 1) {
+      playerOneScore = playerOneScore+200
+      scoreOneEl.innerText = `$${playerOneScore}`
+    } else if (turn === -1) {
+      playerTwoScore = playerTwoScore+200
+      scoreTwoEl.innerText = `$${playerTwoScore}`
+    }
   } else {
-    console.log(`No, dummy`)
+    if (turn === -1) {
+      
+    }
   }
+  render()
 }
 // 6.1.4 If the clue selected has the class "daily-double", call the daily double function
       // 6.1.4.1 Play daily double sound
