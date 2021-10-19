@@ -37,6 +37,11 @@ html {
   src: url('/fonts/Univers\ CE\ 75\ Black.ttf');
 }
 
+@font-face {
+  font-family: SteileFuturaBQ;
+  src: url('/fonts/SteileFuturaBQ-Bold.otf');
+}
+
 body {
   /* Use a system font, if none are available use an available sans-sarif font */
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -103,6 +108,12 @@ h1 {
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.daily-double-message {
+  font-family: SteileFuturaBQ;
+  font-size: 57px;
+  line-height: 50px;
 }
 
 .answer-board {
@@ -211,40 +222,40 @@ input[type=name-text-two] {
   color: #d7a04b;
   font-size: 40px;
   font-family: Swiss911;
-  text-shadow: black 2px 2px;
+  text-shadow: black 3px 3px;
 }
 
 .squares.two {
   color: #d7a04b;
   font-size: 40px;
   font-family: Swiss911;
-  text-shadow: black 2px 2px;
+  text-shadow: black 3px 3px;
 }
 
 .squares.three {
   color: #d7a04b;
   font-size: 40px;
   font-family: Swiss911;
-  text-shadow: black 2px 2px;
+  text-shadow: black 3px 3px;
 }
 
 .squares.four {
   color: #d7a04b;
   font-size: 40px;
   font-family: Swiss911;
-  text-shadow: black 2px 2px;
+  text-shadow: black 3px 3px;
 }
 
 .squares.five {
   color: #d7a04b;
   font-size: 40px;
   font-family: Swiss911;
-  text-shadow: black 2px 2px;
+  text-shadow: black 3px 3px;
 }
 
 .squares.six {
   color: #d7a04b;
   font-size: 40px;
   font-family: Swiss911;
-  text-shadow: black 2px 2px;
+  text-shadow: black 3px 3px;
 }
