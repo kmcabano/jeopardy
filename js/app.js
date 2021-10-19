@@ -73,8 +73,9 @@ function init() {
   turn = null
   messageEl.innerText = `Input Player Names Above`
   nameOneInput.focus()
-  // boardEl.removeEventListener('click', clueSelect)
+  boardEl.removeEventListener('click', clueSelect)
   nameTwoInput.removeEventListener('keydown', namePlayerTwo)
+  document.removeEventListener('keydown', buzz)
   console.log(document.getElementsByClassName('daily-double'))
   // 4.1 Initialize function
     // 4.1.1 Array of 36 elements mapped to the board
@@ -102,7 +103,7 @@ function render() {
 
 function namePlayerOne(e) {
   if (e.key === 'Enter') {
-  nameOneEl.textContent = e.target.value
+  nameOneEl.innerText = e.target.value
   nameTwoInput.addEventListener('keydown', namePlayerTwo)
   nameTwoInput.focus()
   }
@@ -110,9 +111,9 @@ function namePlayerOne(e) {
 
 function namePlayerTwo(e) {
   if (e.key === 'Enter') {
-    nameTwoEl.textContent = e.target.value
-    messageEl.textContent = 'Player 1, select a clue!'
-    // boardEl.addEventListener('click', clueSelect)
+    nameTwoEl.innerText = e.target.value
+    messageEl.innerText = 'Player 1, select a clue!'
+    boardEl.addEventListener('click', clueSelect)
   }
 }
 
@@ -165,15 +166,18 @@ function clueSelect(e) {
     }
   } 
 e.target.removeEventListener('click', clueSelect)
+document.addEventListener('keydown', buzz)
 render();
 }
 
 function buzz(e) {
   if (e.key === 'a') {
     turn = 1
+    messageEl.innerText = `${nameOneEl.innerText}, select answer`
   } else if (e.key === 'l') {
     turn = -1
-  } // console.log(turn)
+    messageEl.innerText = `${nameTwoEl.innerText}, select answer`
+  }
 } 
 
 function answerSelect(e) {
