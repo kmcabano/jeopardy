@@ -31,7 +31,8 @@ const nameTwoEl = document.querySelector('.player-two-name')
 const nameTwoInput = document.querySelector('input[type=name-text-two]')
 const scoreOneEl = document.querySelector('.player-one-score')
 const scoreTwoEl = document.querySelector('.player-two-score')
-
+const ruleMsg = document.querySelector('.rules')
+const ruleBtn = document.querySelector('#rules')
 
  // 2.2 Status - whose turn, game over, etc.
 
@@ -57,10 +58,16 @@ const scoreTwoEl = document.querySelector('.player-two-score')
 
 answerBoardEl.addEventListener('click', answerSelect)
 nameOneInput.addEventListener('keydown', namePlayerOne)
+ruleBtn.addEventListener('click', closeRules)
 
 /*--------------Functions--------------*/
 
 init()
+
+function closeRules() {
+  ruleMsg.style.visibility = 'hidden'
+  nameOneInput.focus()
+}
 
 function init() {
   boardSq[Math.floor(Math.random() * (36 - 18) + 18)].classList.add('daily-double')
@@ -69,7 +76,6 @@ function init() {
   turn = null
   isFinalJeopardy = false
   messageEl.innerText = `Input Player Names Above`
-  nameOneInput.focus()
   // boardEl.removeEventListener('click', clueSelect)
   console.log(document.getElementsByClassName('daily-double'))
   // 4.1 Initialize function
