@@ -2,7 +2,7 @@
 
 /*----------Variables (state)----------*/
 
-let turn, winner
+let turn, winner, keyPressed
 let isFinalJeopardy = false
 let playerOneScore = 0
 let playerTwoScore = 0
@@ -52,6 +52,7 @@ const scoreTwoEl = document.querySelector('.player-two-score')
 /*-----------Event Listeners-----------*/
 
 boardEl.addEventListener('click', handleClick)
+document.addEventListener('keydown', buzz)
 
 /*--------------Functions--------------*/
 
@@ -61,6 +62,7 @@ function init() {
   boardSq[Math.floor(Math.random() * (36 - 18) + 18)].classList.add('daily-double')
   scoreOneEl.innerText = `$${playerOneScore}`
   scoreTwoEl.innerText = `$${playerTwoScore}`
+  turn = null
   // 4.1 Initialize function
     // 4.1.1 Array of 36 elements mapped to the board
       // 4.1.1.1 index 0-5 will contain category names, 6-11 "$100", 12-17 "$200", etc. for the appropriate amounts
@@ -131,6 +133,14 @@ function handleClick(e) {
 e.target.removeEventListener('click', handleClick)
 render();
 }
+
+function buzz(e) {
+  if (e.key === 'a') {
+    turn = 1
+  } else if (e.key === 'l') {
+    turn = -1
+  } // console.log(turn)
+} 
 
 // 6.1.4 If the clue selected has the class "daily-double", call the daily double function
       // 6.1.4.1 Play daily double sound
