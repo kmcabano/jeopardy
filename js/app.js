@@ -173,11 +173,14 @@ render();
 function buzz(e) {
   if (e.key === 'a') {
     turn = 1
-    messageEl.innerText = `${nameOneEl.innerText}, select answer`
+    console.log(turn)
+    messageEl.innerText = `${nameOneEl.innerText}, select answer!`
   } else if (e.key === 'l') {
     turn = -1
-    messageEl.innerText = `${nameTwoEl.innerText}, select answer`
+    console.log(turn)
+    messageEl.innerText = `${nameTwoEl.innerText}, select answer!`
   }
+  document.removeEventListener('keydown', buzz)
 } 
 
 function answerSelect(e) {
@@ -186,17 +189,26 @@ function answerSelect(e) {
     if (turn === 1) {
       playerOneScore = playerOneScore+200
       scoreOneEl.innerText = `$${playerOneScore}`
+      messageEl.innerText = `${nameOneEl.innerText}, select another clue!`
     } else if (turn === -1) {
       playerTwoScore = playerTwoScore+200
       scoreTwoEl.innerText = `$${playerTwoScore}`
     }
   } else {
-    if (turn === -1) {
-      
+    console.log(`incorrect`)
+    if (turn === 1) {
+      playerOneScore = playerOneScore-200
+      scoreOneEl.innerText = `$${playerOneScore}`
     }
   }
   render()
+  if (scoreOneEl.innerText.includes(`-`)) {
+    scoreOneEl.style.color = `red`
+  } else {
+    scoreOneEl.style.color = `white`
+  }
 }
+
 // 6.1.4 If the clue selected has the class "daily-double", call the daily double function
       // 6.1.4.1 Play daily double sound
       // 6.1.4.2 Display input box and submit button for wager
