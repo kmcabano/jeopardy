@@ -173,11 +173,9 @@ render();
 function buzz(e) {
   if (e.key === 'a') {
     turn = 1
-    console.log(turn)
     messageEl.innerText = `${nameOneEl.innerText}, select answer!`
   } else if (e.key === 'l') {
     turn = -1
-    console.log(turn)
     messageEl.innerText = `${nameTwoEl.innerText}, select answer!`
   }
   document.removeEventListener('keydown', buzz)
