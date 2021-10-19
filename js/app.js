@@ -71,6 +71,9 @@ function init() {
   scoreOneEl.innerText = `$${playerOneScore}`
   scoreTwoEl.innerText = `$${playerTwoScore}`
   turn = null
+  messageEl.innerText = `Input Player Names Above`
+  boardEl.removeEventListener('click', clueSelect)
+  nameTwoInput.removeEventListener('keydown', namePlayerTwo)
   // 4.1 Initialize function
     // 4.1.1 Array of 36 elements mapped to the board
       // 4.1.1.1 index 0-5 will contain category names, 6-11 "$100", 12-17 "$200", etc. for the appropriate amounts
@@ -98,12 +101,15 @@ function render() {
 function namePlayerOne(e) {
   if (e.key === 'Enter') {
   nameOneEl.textContent = e.target.value
+  nameTwoInput.addEventListener('keydown', namePlayerTwo)
   }
 }
 
 function namePlayerTwo(e) {
   if (e.key === 'Enter') {
     nameTwoEl.textContent = e.target.value
+    messageEl.textContent = 'Player 1, select a clue!'
+    boardEl.addEventListener('click', clueSelect)
   }
 }
 
@@ -141,6 +147,7 @@ function clueSelect(e) {
       boardSq[clickedIdx].classList.add('clicked')
       messageEl.innerText = `Daily Double!`
     } else if (boardSq[clickedIdx] !== null && boardSq[clickedIdx]) {
+      messageEl.innerText = ''
       boardSq[clickedIdx].innerText = null
       boardSq[clickedIdx].classList.add('clicked')
       clueEl.innerText = `${(catEl[clickedCat][clickedVal].clue.toUpperCase())}`
