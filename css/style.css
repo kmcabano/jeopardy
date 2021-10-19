@@ -194,6 +194,14 @@ button {
   font-size: 25px;
 }
 
+input[type=name-text-one] {
+  width: 100%;
+}
+
+input[type=name-text-two] {
+  width: 100%;
+}
+
 .squares.one {
   color: #d7a04b;
   font-size: 40px;

@@ -26,8 +26,13 @@ const answerBoardEl = document.querySelector('.answer-board')
 const clueEl = document.querySelector('.clue')
 const twoEl = document.querySelectorAll('.two')
 const messageEl = document.querySelector('.message')
+const nameOneEl = document.querySelector('.player-one-name')
+const nameOneInput = document.querySelector('input[type=name-text-one]')
+const nameTwoEl = document.querySelector('.player-two-name')
+const nameTwoInput = document.querySelector('input[type=name-text-two]')
 const scoreOneEl = document.querySelector('.player-one-score')
 const scoreTwoEl = document.querySelector('.player-two-score')
+
 
  // 2.2 Status - whose turn, game over, etc.
 
@@ -54,6 +59,8 @@ const scoreTwoEl = document.querySelector('.player-two-score')
 boardEl.addEventListener('click', clueSelect)
 answerBoardEl.addEventListener('click', answerSelect)
 document.addEventListener('keydown', buzz)
+nameOneInput.addEventListener('keydown', namePlayerOne)
+nameTwoInput.addEventListener('keydown', namePlayerTwo)
 
 /*--------------Functions--------------*/
 
@@ -86,6 +93,18 @@ function render() {
     // 4.2. Message(s)
     // 4.2. Update each player's scores to display their variable's value as text
     // 4.2. check for Final Jeopardy - do nothing if false, call Final Jeopardy init if true
+}
+
+function namePlayerOne(e) {
+  if (e.key === 'Enter') {
+  nameOneEl.textContent = e.target.value
+  }
+}
+
+function namePlayerTwo(e) {
+  if (e.key === 'Enter') {
+    nameTwoEl.textContent = e.target.value
+  }
 }
 
 function clueSelect(e) {
