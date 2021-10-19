@@ -72,6 +72,7 @@ function init() {
   scoreTwoEl.innerText = `$${playerTwoScore}`
   turn = null
   messageEl.innerText = `Input Player Names Above`
+  nameOneInput.focus()
   boardEl.removeEventListener('click', clueSelect)
   nameTwoInput.removeEventListener('keydown', namePlayerTwo)
   // 4.1 Initialize function
