@@ -51,7 +51,8 @@ const scoreTwoEl = document.querySelector('.player-two-score')
 
 /*-----------Event Listeners-----------*/
 
-boardEl.addEventListener('click', handleClick)
+boardEl.addEventListener('click', clueSelect)
+answerBoardEl.addEventListener('click', answerSelect)
 document.addEventListener('keydown', buzz)
 
 /*--------------Functions--------------*/
@@ -87,7 +88,7 @@ function render() {
     // 4.2. check for Final Jeopardy - do nothing if false, call Final Jeopardy init if true
 }
 
-function handleClick(e) {
+function clueSelect(e) {
   let catEl = [catA, catB, catC, catD, catE, catF]
 	const clickedIdx = e.target.id.slice(2)
   let clickedVal =
@@ -125,12 +126,15 @@ function handleClick(e) {
       boardSq[clickedIdx].classList.add('clicked')
       clueEl.innerText = `${(catEl[clickedCat][clickedVal].clue.toUpperCase())}`
       boardAns[0].innerText = `${(catEl[clickedCat][clickedVal].response)}`
+      boardAns[0].className = `response`
       boardAns[1].innerText = `${(catEl[clickedCat][clickedVal].wrongOne)}`
+      boardAns[1].className = `wrong-one`
       boardAns[2].innerText = `${(catEl[clickedCat][clickedVal].wrongTwo)}`
+      boardAns[2].className = `wrong-two`
       boardAns.sort(() => Math.random() - 0.5)
     }
   } 
-e.target.removeEventListener('click', handleClick)
+e.target.removeEventListener('click', clueSelect)
 render();
 }
 
@@ -142,6 +146,13 @@ function buzz(e) {
   } // console.log(turn)
 } 
 
+function answerSelect(e) {
+  if (e.target.classList.contains(`response`)) {
+    console.log(`correct`)
+  } else {
+    console.log(`No, dummy`)
+  }
+}
 // 6.1.4 If the clue selected has the class "daily-double", call the daily double function
       // 6.1.4.1 Play daily double sound
       // 6.1.4.2 Display input box and submit button for wager
