@@ -91,7 +91,7 @@ function init() {
     // 4.1.7 Call render function
 }
 
-function render() {
+// function render() {
   // 4.2 Render function
     // 4.2.1 Loop over board array, change content of items as needed according to their updated values
       // For example, the submit answer function that will run when an answer is clicked will empty the element if the response was correct, so the box will then display blank
@@ -100,7 +100,7 @@ function render() {
     // 4.2. Message(s)
     // 4.2. Update each player's scores to display their variable's value as text
     // 4.2. check for Final Jeopardy - do nothing if false, call Final Jeopardy init if true
-}
+  // }
 
 function namePlayerOne(e) {
   if (e.key === 'Enter') {
@@ -195,7 +195,7 @@ function clueSelect(e) {
   } 
 e.target.removeEventListener('click', clueSelect)
 document.addEventListener('keydown', buzz)
-render();
+// render();
 }
 
 function buzz(e) {
@@ -238,23 +238,26 @@ function answerSelect(e) {
       turn = 1
       messageEl.innerText = `${nameOneEl.innerText}, select answer!`
     }
-    if (e.target === boardAns[1]) {
-      boardAns[1].innerText = null
-    } else if (e.target === boardAns[2]) {
-      boardAns[2].innerText = null
+    let wrongIndex = boardAns.indexOf(e.target)
+    if (wrongIndex !== -1) {
+      boardAns.splice(wrongIndex, 1)
     }
   }
-  if (boardAns[1].innerText = null && boardAns[2].innerText) {
+  if (boardAns.length === 1) {
     answerBoardEl.removeEventListener('click', answerSelect)
+    if (turn === 1) {
+      messageEl.innerText = `${nameOneEl.innerText}, select another clue!`
+    } else if (turn === -1) {
+      messageEl.innerText = `${nameTwoEl.innerText}, select another clue!`
+    }
     return
   }
-  render()
+  // render()
   if (scoreOneEl.innerText.includes(`-`)) {
     scoreOneEl.style.color = `red`
   } else {
     scoreOneEl.style.color = `white`
   }
-  console.log(boardAns[0].innerText, boardAns[1].innerText, boardAns[2])
 }
 
 function doubleAnswerSelect(e) {
@@ -283,7 +286,7 @@ function doubleAnswerSelect(e) {
       scoreTwoEl.innerText = `$${playerTwoScore}`
       messageEl.innerText = `${nameTwoEl.innerText}, select another clue!`
   }
-  render()
+  // render()
   if (scoreOneEl.innerText.includes(`-`)) {
     scoreOneEl.style.color = `red`
   } else {
