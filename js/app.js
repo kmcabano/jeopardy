@@ -78,20 +78,9 @@ function init() {
   isFinalJeopardy = false
   messageEl.innerText = `Input Player Names Above`
   console.log(document.getElementsByClassName('daily-double'))
-  // 4.1 Initialize function
-    // 4.1.1 Array of 36 elements mapped to the board
-      // 4.1.1.1 index 0-5 will contain category names, 6-11 "$100", 12-17 "$200", etc. for the appropriate amounts
-      // 4.1.1.2 call a function that randomly assigns one element at index 6-35 the class of "daily-double"
-    // 4.1.2 Status will display a welcome message
-    // 4.1.3 Initialize winner variable to null
-    // 4.1.4 Initialize player scores to $0
-    // 4.1.5 Initialize FJ variable to false
-    // 4.1.6 Display a message for player 1 to select the first clue
-    // 4.1.7 Initialize clue to null
-    // 4.1.7 Call render function
 }
 
-// function render() {
+function render() {
   // 4.2 Render function
     // 4.2.1 Loop over board array, change content of items as needed according to their updated values
       // For example, the submit answer function that will run when an answer is clicked will empty the element if the response was correct, so the box will then display blank
@@ -100,7 +89,7 @@ function init() {
     // 4.2. Message(s)
     // 4.2. Update each player's scores to display their variable's value as text
     // 4.2. check for Final Jeopardy - do nothing if false, call Final Jeopardy init if true
-  // }
+  }
 
 function namePlayerOne(e) {
   if (e.key === 'Enter') {
@@ -195,7 +184,7 @@ function clueSelect(e) {
   } 
 e.target.removeEventListener('click', clueSelect)
 document.addEventListener('keydown', buzz)
-// render();
+render();
 }
 
 function buzz(e) {
@@ -238,25 +227,30 @@ function answerSelect(e) {
       turn = 1
       messageEl.innerText = `${nameOneEl.innerText}, select answer!`
     }
-    let wrongIndex = boardAns.indexOf(e.target)
-    if (wrongIndex !== -1) {
-      boardAns.splice(wrongIndex, 1)
-    }
+    answerBoardEl.classList.add(`${e.target.className}`)
   }
-  if (boardAns.length === 1) {
+  if (answerBoardEl.classList.contains('wrong-two') && answerBoardEl.classList.contains('wrong-one')) {
     answerBoardEl.removeEventListener('click', answerSelect)
     if (turn === 1) {
       messageEl.innerText = `${nameOneEl.innerText}, select another clue!`
     } else if (turn === -1) {
       messageEl.innerText = `${nameTwoEl.innerText}, select another clue!`
     }
+    boardAns[0].innerText = ``
+    boardAns[1].innerText = ``
+    boardAns[2].innerText = ``
     return
   }
-  // render()
+  render()
   if (scoreOneEl.innerText.includes(`-`)) {
     scoreOneEl.style.color = `red`
   } else {
     scoreOneEl.style.color = `white`
+  }
+  if (scoreTwoEl.innerText.includes(`-`)) {
+    scoreTwoEl.style.color = `red`
+  } else {
+    scoreTwoEl.style.color = `white`
   }
 }
 
@@ -286,11 +280,16 @@ function doubleAnswerSelect(e) {
       scoreTwoEl.innerText = `$${playerTwoScore}`
       messageEl.innerText = `${nameTwoEl.innerText}, select another clue!`
   }
-  // render()
+  render()
   if (scoreOneEl.innerText.includes(`-`)) {
     scoreOneEl.style.color = `red`
   } else {
     scoreOneEl.style.color = `white`
+  }
+  if (scoreTwoEl.innerText.includes(`-`)) {
+    scoreTwoEl.style.color = `red`
+  } else {
+    scoreTwoEl.style.color = `white`
   }
 }
 }
