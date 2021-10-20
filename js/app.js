@@ -1,26 +1,7 @@
-/*--------------Constants--------------*/
-
-/*----------Variables (state)----------*/
-
-let turn, winner, keyPressed, isFinalJeopardy
-let playerOneScore = 0
-let playerTwoScore = 0
-  // 1.2 An array for the multiple choice reponses to appear in
-
-  // 1.5 Player score
-
-  // 1.7 empty FJ wager
-
-  // 1.8 empty FJ reponses
-
-/*------Cached Element References------*/
-
 const bodyEl = document.querySelector('body')
 const squaresEl = document.querySelectorAll(".squares")
-let boardSq = [... squaresEl]
 const boardEl = document.querySelector('.board')
 const answersEl = document.querySelectorAll('.answer')
-let boardAns = [... answersEl]
 const answerBoardEl = document.querySelector('.answer-board')
 const centerAnswerEl = document.getElementById('a2')
 const clueEl = document.querySelector('.clue')
@@ -36,32 +17,18 @@ const ruleMsg = document.querySelector('.rules')
 const ruleBtn = document.querySelector('#rules')
 const wagerContainer = document.querySelector('.wager-container')
 
- // 2.2 Status - whose turn, game over, etc.
-
-  // 2.5 Input boxes
-    // 2.5.1 Wager for final jeopardy and for daily double(s)
-    // 2.5.2 Player names
-
-  // 2.6 Final Jeopardy timer
-
-  // 2.7 Final Jeopardy category
-  
-  // 2.8 Buzzer
-
-  // 2.9 Buttons
-
-  // 2.11 An element for the Daily Double
-
-  // 2.12 final jeopardy responses
-
-/*----------------Audio----------------*/
-
-/*-----------Event Listeners-----------*/
+let turn, winner, keyPressed, isFinalJeopardy
+let playerOneScore = 0
+let playerTwoScore = 0
+let boardSq = [... squaresEl]
+let boardAns = [... answersEl]
 
 nameOneInput.addEventListener('keydown', namePlayerOne)
 ruleBtn.addEventListener('click', closeRules)
 
-/*--------------Functions--------------*/
+/*----------------Audio----------------*/
+
+/*-------------------------------------*/
 
 init()
 
@@ -79,17 +46,6 @@ function init() {
   messageEl.innerText = `Input Player Names Above`
   console.log(document.getElementsByClassName('daily-double'))
 }
-
-function render() {
-  // 4.2 Render function
-    // 4.2.1 Loop over board array, change content of items as needed according to their updated values
-      // For example, the submit answer function that will run when an answer is clicked will empty the element if the response was correct, so the box will then display blank
-    // 4.2.2 Loop over reponses array, change content as needed according to their update values
-    // 4.2.3 Display whatever string is contained in the clue box const as text
-    // 4.2. Message(s)
-    // 4.2. Update each player's scores to display their variable's value as text
-    // 4.2. check for Final Jeopardy - do nothing if false, call Final Jeopardy init if true
-  }
 
 function namePlayerOne(e) {
   if (e.key === 'Enter') {
@@ -205,7 +161,6 @@ function clueSelect(e) {
 e.target.removeEventListener('click', clueSelect)
 boardEl.removeEventListener('click', clueSelect)
 document.addEventListener('keydown', buzz)
-render();
 }
 
 function buzz(e) {
@@ -266,7 +221,7 @@ function answerSelect(e) {
     boardAns[2].innerText = ``
     return
   }
-  render()
+  // checkFinalJeopardy()
   if (scoreOneEl.innerText.includes(`-`)) {
     scoreOneEl.style.color = `red`
   } else {
@@ -309,7 +264,7 @@ function doubleAnswerSelect(e) {
       messageEl.innerText = `${nameTwoEl.innerText}, select another clue!`
       boardEl.addEventListener('click', clueSelect)
   }
-  render()
+  // checkFinalJeopardy()
   if (scoreOneEl.innerText.includes(`-`)) {
     scoreOneEl.style.color = `red`
   } else {
