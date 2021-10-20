@@ -144,9 +144,28 @@ function clueSelect(e) {
 
       function commenceDailyDouble(e){
         if (e.key === 'Enter') {
-          // boardAns[0].id = parseInt(e.target.value)
-          // boardAns[1].id = parseInt(e.target.value)
-          // boardAns[2].id = parseInt(e.target.value)
+          if (turn === 1) {
+            if (playerOneScore < 1000 && e.target.value > 1000) {
+              messageEl.innerText = `You may only wager up to $1000!`
+              return
+            }
+          } else if (turn === -1) {
+            if (playerTwoScore < 1000 && e.target.value > 1000) {
+              messageEl.innerText = `You may only wager up to $1000!`
+              return
+            }
+          }
+          if (turn === 1) {
+            if (e.target.value > playerOneScore) {
+              messageEl.innerText = `You may only wager up to $${playerOneScore}!`
+              return
+            }
+          } else if (turn === -1) {
+            if (e.target.value > playerTwoScore) {
+              messageEl.innerText = `You may only wager up to $${playerTwoScore}!`
+              return
+            }
+          }
           dailyWager = parseInt(e.target.value)
           messageEl.innerText = ''
           boardSq[clickedIdx].innerText = null
