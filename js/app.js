@@ -22,6 +22,7 @@ const boardEl = document.querySelector('.board')
 const answersEl = document.querySelectorAll('.answer')
 let boardAns = [... answersEl]
 const answerBoardEl = document.querySelector('.answer-board')
+const centerAnswerEl = document.getElementById('a2')
 const clueEl = document.querySelector('.clue')
 const twoEl = document.querySelectorAll('.two')
 const messageEl = document.querySelector('.message')
@@ -33,6 +34,7 @@ const scoreOneEl = document.querySelector('.player-one-score')
 const scoreTwoEl = document.querySelector('.player-two-score')
 const ruleMsg = document.querySelector('.rules')
 const ruleBtn = document.querySelector('#rules')
+const wagerContainer = document.querySelector('.wager-container')
 
  // 2.2 Status - whose turn, game over, etc.
 
@@ -56,7 +58,6 @@ const ruleBtn = document.querySelector('#rules')
 
 /*-----------Event Listeners-----------*/
 
-answerBoardEl.addEventListener('click', answerSelect)
 nameOneInput.addEventListener('keydown', namePlayerOne)
 ruleBtn.addEventListener('click', closeRules)
 
@@ -76,7 +77,6 @@ function init() {
   turn = null
   isFinalJeopardy = false
   messageEl.innerText = `Input Player Names Above`
-  // boardEl.removeEventListener('click', clueSelect)
   console.log(document.getElementsByClassName('daily-double'))
   // 4.1 Initialize function
     // 4.1.1 Array of 36 elements mapped to the board
@@ -152,6 +152,30 @@ function clueSelect(e) {
       boardSq[clickedIdx].classList.add('clicked')
       clueEl.innerText = `DAILY DOUBLE`
       clueEl.classList.add(`daily-double-message`)
+      wagerContainer.innerHTML = `<div class="daily-double-wager">$ <input type="text" placeholder="Make your wager!"></div>`
+      wagerContainer.addEventListener('keydown', commenceDailyDouble)
+      function commenceDailyDouble(e){
+        if (e.key === 'Enter') {
+          boardAns[0].id = parseInt(e.target.value)
+          boardAns[1].id = parseInt(e.target.value)
+          boardAns[2].id = parseInt(e.target.value)
+          messageEl.innerText = ''
+          boardSq[clickedIdx].innerText = null
+          boardSq[clickedIdx].classList.add('clicked')
+          clueEl.classList.remove(`daily-double-message`)
+          clueEl.innerText = `${(catEl[clickedCat][clickedVal].clue.toUpperCase())}`
+          boardAns[0].innerText = `${(catEl[clickedCat][clickedVal].response)}`
+          boardAns[0].className = `response`
+          boardAns[1].innerText = `${(catEl[clickedCat][clickedVal].wrongOne)}`
+          boardAns[1].className = `wrong-one`
+          boardAns[2].innerText = `${(catEl[clickedCat][clickedVal].wrongTwo)}`
+          boardAns[2].className = `wrong-two`
+          boardAns.sort(() => Math.random() - 0.5)
+          wagerContainer.innerHTML = ``
+          answerBoardEl.removeEventListener('click', answerSelect)
+          answerBoardEl.addEventListener('click', doubleAnswerSelect)
+        }
+      }
     } else if (boardSq[clickedIdx] !== null && boardSq[clickedIdx]) {
       messageEl.innerText = ''
       boardSq[clickedIdx].innerText = null
@@ -159,11 +183,15 @@ function clueSelect(e) {
       clueEl.innerText = `${(catEl[clickedCat][clickedVal].clue.toUpperCase())}`
       boardAns[0].innerText = `${(catEl[clickedCat][clickedVal].response)}`
       boardAns[0].className = `response`
+      boardAns[0].id = `${(catEl[clickedCat][clickedVal].value)}`
       boardAns[1].innerText = `${(catEl[clickedCat][clickedVal].wrongOne)}`
       boardAns[1].className = `wrong-one`
+      boardAns[1].id = `${(catEl[clickedCat][clickedVal].value)}`
       boardAns[2].innerText = `${(catEl[clickedCat][clickedVal].wrongTwo)}`
       boardAns[2].className = `wrong-two`
+      boardAns[2].id = `${(catEl[clickedCat][clickedVal].value)}`
       boardAns.sort(() => Math.random() - 0.5)
+
     }
   } 
 e.target.removeEventListener('click', clueSelect)
@@ -172,6 +200,7 @@ render();
 }
 
 function buzz(e) {
+  messageEl.innerText = ``
   if (e.key === 'a') {
     turn = 1
     messageEl.innerText = `${nameOneEl.innerText}, select answer!`
@@ -180,23 +209,25 @@ function buzz(e) {
     messageEl.innerText = `${nameTwoEl.innerText}, select answer!`
   }
   document.removeEventListener('keydown', buzz)
+  answerBoardEl.addEventListener('click', answerSelect)
 } 
 
 function answerSelect(e) {
   if (e.target.classList.contains(`response`)) {
     console.log(`correct`)
     if (turn === 1) {
-      playerOneScore = playerOneScore+200
+      playerOneScore = playerOneScore+(parseInt(e.target.id.substring(1)))
       scoreOneEl.innerText = `$${playerOneScore}`
       messageEl.innerText = `${nameOneEl.innerText}, select another clue!`
     } else if (turn === -1) {
-      playerTwoScore = playerTwoScore+200
+      playerTwoScore = playerTwoScore+(parseInt(e.target.id.substring(1)))
       scoreTwoEl.innerText = `$${playerTwoScore}`
+      messageEl.innerText = `${nameTwoEl.innerText}, select another clue!`
     }
   } else {
     console.log(`incorrect`)
     if (turn === 1) {
-      playerOneScore = playerOneScore-200
+      playerOneScore = playerOneScore-(parseInt(e.target.id.substring(1)))
       scoreOneEl.innerText = `$${playerOneScore}`
     }
   }
@@ -207,6 +238,35 @@ function answerSelect(e) {
     scoreOneEl.style.color = `white`
   }
 }
+
+function doubleAnswerSelect(e) {
+  if (e.target.classList.contains(`response`)) {
+    console.log(`correct`)
+    if (turn === 1) {
+      playerOneScore = playerOneScore+(parseInt(e.target.id))
+      scoreOneEl.innerText = `$${playerOneScore}`
+      messageEl.innerText = `${nameOneEl.innerText}, select another clue!`
+    } else if (turn === -1) {
+      playerTwoScore = playerTwoScore+(parseInt(e.target.id))
+      scoreTwoEl.innerText = `$${playerTwoScore}`
+      messageEl.innerText = `${nameTwoEl.innerText}, select another clue!`
+    }
+  } else {
+    console.log(`incorrect`)
+    if (turn === 1) {
+      playerOneScore = playerOneScore-(parseInt(e.target.id))
+      scoreOneEl.innerText = `$${playerOneScore}`
+    }
+  }
+  render()
+  if (scoreOneEl.innerText.includes(`-`)) {
+    scoreOneEl.style.color = `red`
+  } else {
+    scoreOneEl.style.color = `white`
+  }
+}
+
+
 
 // 6.1.4 If the clue selected has the class "daily-double", call the daily double function
       // 6.1.4.1 Play daily double sound
