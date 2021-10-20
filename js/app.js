@@ -132,15 +132,15 @@ function clueSelect(e) {
     ? 3
     : 4
   let clickedCat =
-      e.target.className.substring(8) === `one`
+      e.target.classList.contains(`one`)
     ? 0
-    : e.target.className.substring(8) === `two`
+    : e.target.classList.contains(`two`)
     ? 1
-    : e.target.className.substring(8) === `three`
+    : e.target.classList.contains(`three`)
     ? 2
-    : e.target.className.substring(8) === `four`
+    : e.target.classList.contains(`four`)
     ? 3
-    : e.target.className.substring(8) === `five`
+    : e.target.classList.contains(`five`)
     ? 4
     : 5
   if (clickedIdx > 5) {
@@ -148,8 +148,6 @@ function clueSelect(e) {
       return
     }
     if (e.target.classList.contains(`daily-double`)) {
-      boardSq[clickedIdx].innerText = null
-      boardSq[clickedIdx].classList.add('clicked')
       clueEl.innerText = `DAILY DOUBLE`
       clueEl.classList.add(`daily-double-message`)
       wagerContainer.innerHTML = `<div class="daily-double-wager">$ <input type="text" placeholder="Make your wager!"></div>`
@@ -256,7 +254,11 @@ function doubleAnswerSelect(e) {
     if (turn === 1) {
       playerOneScore = playerOneScore-(parseInt(e.target.id))
       scoreOneEl.innerText = `$${playerOneScore}`
-    }
+      messageEl.innerText = `${nameOneEl.innerText}, select another clue!`
+    } else if (turn === -1) {
+      playerTwoScore = playerTwoScore+(parseInt(e.target.id))
+      scoreTwoEl.innerText = `$${playerTwoScore}`
+      messageEl.innerText = `${nameTwoEl.innerText}, select another clue!`
   }
   render()
   if (scoreOneEl.innerText.includes(`-`)) {
@@ -264,6 +266,7 @@ function doubleAnswerSelect(e) {
   } else {
     scoreOneEl.style.color = `white`
   }
+}
 }
 
 
