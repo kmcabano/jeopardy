@@ -71,10 +71,10 @@ function closeRules() {
 }
 
 function init() {
-  boardSq[Math.floor(Math.random() * (36 - 18) + 18)].classList.add('daily-double')
+  // boardSq[Math.floor(Math.random() * (36 - 18) + 18)].classList.add('daily-double')
   scoreOneEl.innerText = `$${playerOneScore}`
   scoreTwoEl.innerText = `$${playerTwoScore}`
-  turn = null
+  turn = 1
   isFinalJeopardy = false
   messageEl.innerText = `Input Player Names Above`
   console.log(document.getElementsByClassName('daily-double'))
@@ -152,6 +152,7 @@ function clueSelect(e) {
       clueEl.classList.add(`daily-double-message`)
       wagerContainer.innerHTML = `<div class="daily-double-wager">$ <input type="text" placeholder="Make your wager!"></div>`
       wagerContainer.addEventListener('keydown', commenceDailyDouble)
+
       function commenceDailyDouble(e){
         if (e.key === 'Enter') {
           boardAns[0].id = parseInt(e.target.value)
@@ -212,7 +213,9 @@ function buzz(e) {
 
 function answerSelect(e) {
   if (e.target.classList.contains(`response`)) {
-    console.log(`correct`)
+    boardAns[0].innerText = ``
+    boardAns[1].innerText = ``  
+    boardAns[2].innerText = ``  
     if (turn === 1) {
       playerOneScore = playerOneScore+(parseInt(e.target.id.substring(1)))
       scoreOneEl.innerText = `$${playerOneScore}`
@@ -227,7 +230,23 @@ function answerSelect(e) {
     if (turn === 1) {
       playerOneScore = playerOneScore-(parseInt(e.target.id.substring(1)))
       scoreOneEl.innerText = `$${playerOneScore}`
+      turn = -1
+      messageEl.innerText = `${nameTwoEl.innerText}, select answer!`
+    } else if (turn === -1) {
+      playerTwoScore = playerTwoScore-(parseInt(e.target.id.substring(1)))
+      scoreTwoEl.innerText = `$${playerTwoScore}`
+      turn = 1
+      messageEl.innerText = `${nameOneEl.innerText}, select answer!`
     }
+    if (e.target === boardAns[1]) {
+      boardAns[1].innerText = null
+    } else if (e.target === boardAns[2]) {
+      boardAns[2].innerText = null
+    }
+  }
+  if (boardAns[1].innerText = null && boardAns[2].innerText) {
+    answerBoardEl.removeEventListener('click', answerSelect)
+    return
   }
   render()
   if (scoreOneEl.innerText.includes(`-`)) {
@@ -235,10 +254,14 @@ function answerSelect(e) {
   } else {
     scoreOneEl.style.color = `white`
   }
+  console.log(boardAns[0].innerText, boardAns[1].innerText, boardAns[2])
 }
 
 function doubleAnswerSelect(e) {
   if (e.target.classList.contains(`response`)) {
+    boardAns[0].innerText = ``
+    boardAns[1].innerText = ``
+    boardAns[2].innerText = ``
     console.log(`correct`)
     if (turn === 1) {
       playerOneScore = playerOneScore+(parseInt(e.target.id))
@@ -268,13 +291,3 @@ function doubleAnswerSelect(e) {
   }
 }
 }
-
-
-
-// 6.1.4 If the clue selected has the class "daily-double", call the daily double function
-      // 6.1.4.1 Play daily double sound
-      // 6.1.4.2 Display input box and submit button for wager
-      // 6.1.4.3 After that's submitted, the clue is displayed along with the answer choices - no turn variable is assigned this time
-      // 6.1.4.4 If answered correctly, add the wager amount to the player's score, clear the clue and reponses, and call for a new clue to be selected if there are still clue values in the array/on the board
-      // 6.1.4.5 If answered incorrectly, add the wager amount to the player's score, clear the clue and reponses, and call for a new clue to be selected if there are still clue values in the array/on the board
-      // 6.1.4.6 Display a message that it is the same player's turn to select the next clue
