@@ -1,3 +1,8 @@
+// light/dark mode
+// fj
+  // wagers, timer, etc
+
+
 const bodyEl = document.querySelector('body')
 const squaresEl = document.querySelectorAll(".squares")
 const boardEl = document.querySelector('.board')
