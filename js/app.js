@@ -208,7 +208,8 @@ function answerSelect(e) {
       boardEl.addEventListener('click', clueSelect)
     }
   } else if (e.target.classList.contains('wrong-one') || e.target.classList.contains('wrong-two')) {
-    console.log(`incorrect`)
+    e.target.style.color = 'red'
+    e.target.innerText = 'INCORRECT'
     if (turn === 1) {
       playerOneScore = playerOneScore-(parseInt(e.target.id.substring(1)))
       scoreOneEl.innerText = `$${playerOneScore}`
@@ -226,6 +227,9 @@ function answerSelect(e) {
   }
   if (answerBoardEl.classList.contains('wrong-two') && answerBoardEl.classList.contains('wrong-one')) {
     answerBoardEl.removeEventListener('click', answerSelect)
+    e.target.style.color = 'red'
+    e.target.innerText = 'INCORRECT'
+    document.querySelector('.response').style.color = '#32cd32'
     if (turn === 1) {
       messageEl.innerText = `${nameOneEl.innerText}, select another clue!`
       boardEl.addEventListener('click', clueSelect)
@@ -233,9 +237,9 @@ function answerSelect(e) {
       messageEl.innerText = `${nameTwoEl.innerText}, select another clue!`
       boardEl.addEventListener('click', clueSelect)
     }
-    boardAns[0].innerText = ``
-    boardAns[1].innerText = ``
-    boardAns[2].innerText = ``
+    // boardAns[0].innerText = ``
+    // boardAns[1].innerText = ``
+    // boardAns[2].innerText = ``
     return
   }
   checkFinalJeopardy()
@@ -256,6 +260,8 @@ function doubleAnswerSelect(e) {
     boardAns[0].innerText = ``
     boardAns[1].innerText = ``
     boardAns[2].innerText = ``
+    e.target.style.color = '#32cd32'
+    e.target.innerText = 'CORRECT!'
     if (turn === 1) {
       playerOneScore = playerOneScore+dailyWager
       scoreOneEl.innerText = `$${playerOneScore}`
@@ -268,6 +274,8 @@ function doubleAnswerSelect(e) {
       boardEl.addEventListener('click', clueSelect)
     }
   } else if (e.target.classList.contains('wrong-one') || e.target.classList.contains('wrong-two')) {
+    e.target.style.color = 'red'
+    e.target.innerText = 'INCORRECT'
     if (turn === 1) {
       playerOneScore = playerOneScore-dailyWager
       scoreOneEl.innerText = `$${playerOneScore}`
