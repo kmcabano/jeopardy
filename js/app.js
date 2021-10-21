@@ -353,7 +353,8 @@ function wagerFinalOne (e) {
       messageEl.innerText = `You may only wager up to $${playerOneScore}`
       return
     } 
-    finalWagerOneResult.innerText = `${nameOneEl.innerText} wagered $${parseInt(e.target.value)}`
+    finalOneAmt = parseInt(e.target.value)
+    finalWagerOneResult.innerText = `${nameOneEl.innerText} wagered $${finalOneAmt}`
     finalWagerTwoInput.addEventListener('keydown', wagerFinalTwo)
     finalWagerTwoInput.focus()
   }
@@ -365,14 +366,11 @@ function wagerFinalTwo(e) {
       messageEl.innerText = `You may only wager up to $${playerTwoScore}`
       return
     }
-    finalWagerTwoResult.innerText = `${nameTwoEl.innerText} wagered $${parseInt(e.target.value)}`
+    finalTwoAmt = parseInt(e.target.value)
+    finalWagerTwoResult.innerText = `${nameTwoEl.innerText} wagered $${finalTwoAmt}`
     messageEl.innerText = `Category: ${finalJeopardyQuestion.category}`
     timerDisplay.innerText = `START!`
     timerDisplay.addEventListener('click', commenceFinalJeopardy)
-    console.log(finalWagerOneResult)
-    console.log(typeof finalWagerOneResult)
-    console.log(finalWagerOneResult.innerText)
-    console.log(parseInt(finalWagerOneResult.innerText))
   }
 }
 
@@ -392,9 +390,9 @@ function commenceFinalJeopardy(){
 
 function finalAnswerSelectOne(e) {
   if (e.target.classList.contains('response')) {
-    playerOneScore = playerOneScore+(parseInt(finalWagerOneResult.innerText))
+    playerOneScore = playerOneScore+finalOneAmt
   } else if (e.target.classList.contains('wrong-one') || e.target.classList.contains('wrong-two')) {
-    playerOneScore = playerOneScore-(parseInt(finalWagerOneResult.innerText))
+    playerOneScore = playerOneScore-finalOneAmt
   }
   answerBoardEl.removeEventListener('click', finalAnswerSelectOne)
   answerBoardEl.addEventListener('click', finalAnswerSelectTwo)
@@ -403,9 +401,9 @@ function finalAnswerSelectOne(e) {
 
 function finalAnswerSelectTwo(e){
   if (e.target.classList.contains('response')) {
-    playerTwoScore = playerTwoScore+(parseInt(finalWagerTwoResult.innerText))
+    playerTwoScore = playerTwoScore+finalTwoAmt
   } else if (e.target.classList.contains('wrong-one') || e.target.classList.contains('wrong-two')) {
-    playerTwoScore = playerTwoScore-(parseInt(finalWagerTwoResult.innerText))
+    playerTwoScore = playerTwoScore-finalTwoAmt
   }
   answerBoardEl.removeEventListener('click', finalAnswerSelectTwo)
   console.log(playerTwoScore)
@@ -419,6 +417,7 @@ function startTimer(sec) {
     if (counter < 0) {
       clearInterval(interval)
       timerDisplay.innerText = `Time!`
+      messageEl.innerHTML = `<div class="reveal">REVEAL</div>`
     }
   }, 1000)
 }
