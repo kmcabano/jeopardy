@@ -282,18 +282,29 @@ button#rules {
   line-height: 130px;
 }
 
-.FJF {
+.fjf {
  font-family: SteileFuturaBQ;
  font-size: 140px;
  animation: tada;
  animation-duration: 2s;
 }
 
-.FJJ {
+.fjj {
   font-family: gyparody;
   font-size: 150px;
   animation: tada;
   animation-duration: 2s;
+}
+
+.fjc {
+  /* display: flex; */
+  /* flex-direction: column; */
+  font-family: ITCKorinna;
+  font-size: 48px;
+  line-height: 56px;
+  text-align: center;
+  /* justify-content: center; */
+  /* align-items: center; */
 }
 
 .scores {

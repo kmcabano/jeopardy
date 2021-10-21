@@ -19,8 +19,11 @@ const finalWagerTwoInput = document.querySelector('input[type="text-wager-two')
 const finalWagerOneResult = document.querySelector('.player-one-wager')
 const finalWagerTwoResult = document.querySelector('.player-two-wager')
 const timerDisplay = document.querySelector('.timer')
+const bigFinal = document.querySelector('.fjf')
+const bigJeopardy = document.querySelector('.fjj')
+const finalClueEl = document.querySelector('.fjc')
 
-let turn, winner, keyPressed, isFinalJeopardy, finalOneAmt, finalTwoAmt
+let turn, winner, keyPressed, isFinalJeopardy, finalOneAmt, finalTwoAmt, finalOneResp, finalTwoResp
 let playerOneScore = 0
 let playerTwoScore = 0
 let boardSq = [... squaresEl]
@@ -30,7 +33,10 @@ nameOneInput.addEventListener('keydown', namePlayerOne)
 ruleBtn.addEventListener('click', closeRules)
 
 /*----------------Audio----------------*/
-
+const finalSong = new Audio('../audio/final-jeopardy.mp3')
+const correctSound = new Audio('../audio/correct-answer.mp3')
+const wrongSound = new Audio ('../audio/wrong-answer.mp3')
+const dailyDoubleSound = new Audio('../audio/daily-double.mp3')
 /*-------------------------------------*/
 
 init()
@@ -105,6 +111,7 @@ function clueSelect(e) {
       boardAns[2].innerText =  ''
       clueEl.innerText = `DAILY DOUBLE`
       clueEl.classList.add(`daily-double-message`)
+      dailyDoubleSound.play()
       wagerContainer.innerHTML = `<div class="daily-double-wager">$ <input type="text" placeholder="Make your wager!"></div>`
       wagerContainer.addEventListener('keydown', commenceDailyDouble)
       function commenceDailyDouble(e){
@@ -193,6 +200,7 @@ function answerSelect(e) {
     boardAns[2].innerText = ``  
     e.target.style.color = '#32cd32'
     e.target.innerText = 'CORRECT!'
+    correctSound.play()
     if (turn === 1) {
       playerOneScore = playerOneScore+(parseInt(e.target.id.substring(1)))
       scoreOneEl.innerText = `$${playerOneScore}`
@@ -209,6 +217,7 @@ function answerSelect(e) {
   } else if (e.target.classList.contains('wrong-one') || e.target.classList.contains('wrong-two')) {
     e.target.style.color = 'red'
     e.target.innerText = 'INCORRECT'
+    wrongSound.play()
     if (turn === 1) {
       playerOneScore = playerOneScore-(parseInt(e.target.id.substring(1)))
       scoreOneEl.innerText = `$${playerOneScore}`
@@ -228,6 +237,7 @@ function answerSelect(e) {
     answerBoardEl.removeEventListener('click', answerSelect)
     e.target.style.color = 'red'
     e.target.innerText = 'INCORRECT'
+    wrongSound.play()
     document.querySelector('.response').style.color = '#32cd32'
     if (turn === 1) {
       messageEl.innerText = `${nameOneEl.innerText}, select another clue!`
@@ -258,6 +268,7 @@ function doubleAnswerSelect(e) {
     boardAns[2].innerText = ``
     e.target.style.color = '#32cd32'
     e.target.innerText = 'CORRECT!'
+    correctSound.play()
     if (turn === 1) {
       playerOneScore = playerOneScore+dailyWager
       scoreOneEl.innerText = `$${playerOneScore}`
@@ -272,6 +283,7 @@ function doubleAnswerSelect(e) {
   } else if (e.target.classList.contains('wrong-one') || e.target.classList.contains('wrong-two')) {
     e.target.style.color = 'red'
     e.target.innerText = 'INCORRECT'
+    wrongSound.play()
     if (turn === 1) {
       playerOneScore = playerOneScore-dailyWager
       scoreOneEl.innerText = `$${playerOneScore}`
@@ -321,12 +333,12 @@ function setUpFinalJeopardy() {
     winner = 1
     checkWinner()
   } else {
-    boardEl.innerHTML = '<div class="FJF">FINAL</div><div class ="FJJ">JEOPARDY!</div>'
+    boardEl.innerHTML = '<div class="fjf">FINAL</div><div class ="fjj">JEOPARDY!</div><div class="fjc></div>'
     boardEl.className = 'final-jeopardy-board'
     messageEl.innerText = 'Make your wagers!'
     document.querySelector('.final-jeopardy-wager').style.zIndex = '1'
-    finalWagerOneInput.placeholder = `${nameOneEl.innerText}'s wager'`
-    finalWagerTwoInput.placeholder = `${nameTwoEl.innerText}'s wager'`
+    finalWagerOneInput.placeholder = `${nameOneEl.innerText}'s wager`
+    finalWagerTwoInput.placeholder = `${nameTwoEl.innerText}'s wager`
     boardAns[0].innerText = ``
     boardAns[1].innerText = ``
     boardAns[2].innerText = ``
@@ -341,7 +353,7 @@ function wagerFinalOne (e) {
       messageEl.innerText = `You may only wager up to $${playerOneScore}`
       return
     } 
-    finalWagerOneResult.innerText = `${nameOneEl.innerText}'s wager': $${parseInt(e.target.value)}`
+    finalWagerOneResult.innerText = `${nameOneEl.innerText} wagered $${parseInt(e.target.value)}`
     finalWagerTwoInput.addEventListener('keydown', wagerFinalTwo)
     finalWagerTwoInput.focus()
   }
@@ -353,18 +365,51 @@ function wagerFinalTwo(e) {
       messageEl.innerText = `You may only wager up to $${playerTwoScore}`
       return
     }
-    finalWagerTwoResult.innerText = `${nameTwoEl.innerText}'s wager': $${parseInt(e.target.value)}`
-    messageEl.innerText = ''
-    commenceFinalJeopardy()
+    finalWagerTwoResult.innerText = `${nameTwoEl.innerText} wagered $${parseInt(e.target.value)}`
+    messageEl.innerText = `Category: ${finalJeopardyQuestion.category}`
+    timerDisplay.innerText = `START!`
+    timerDisplay.addEventListener('click', commenceFinalJeopardy)
+    console.log(finalWagerOneResult)
+    console.log(typeof finalWagerOneResult)
+    console.log(finalWagerOneResult.innerText)
+    console.log(parseInt(finalWagerOneResult.innerText))
   }
 }
 
 function commenceFinalJeopardy(){
-  messageEl.innerText = `Category: ${finalJeopardyQuestion.category}`
-  timerDisplay.innerText = `START!`
-  timerDisplay.addEventListener('click', /*startTimer(60)*/ startTimer(15))
+  startTimer(30)
+  finalSong.play()
+  boardEl.innerHTML = `<div class="fjc">${finalJeopardyQuestion.clue.toUpperCase()}</div>`
+  boardAns[0].style.color =  'white'
+  boardAns[1].style.color =  'white'
+  boardAns[2].style.color =  'white'
+  boardAns[0].innerText = `${finalJeopardyQuestion.response}`
+  boardAns[1].innerText = `${finalJeopardyQuestion.wrongOne}`
+  boardAns[2].innerText = `${finalJeopardyQuestion.wrongTwo}`
+  boardAns.sort(() => Math.random() - 0.5)
+  answerBoardEl.addEventListener('click', finalAnswerSelectOne)
 }
 
+function finalAnswerSelectOne(e) {
+  if (e.target.classList.contains('response')) {
+    playerOneScore = playerOneScore+(parseInt(finalWagerOneResult.innerText))
+  } else if (e.target.classList.contains('wrong-one') || e.target.classList.contains('wrong-two')) {
+    playerOneScore = playerOneScore-(parseInt(finalWagerOneResult.innerText))
+  }
+  answerBoardEl.removeEventListener('click', finalAnswerSelectOne)
+  answerBoardEl.addEventListener('click', finalAnswerSelectTwo)
+  console.log(playerOneScore)
+}
+
+function finalAnswerSelectTwo(e){
+  if (e.target.classList.contains('response')) {
+    playerTwoScore = playerTwoScore+(parseInt(finalWagerTwoResult.innerText))
+  } else if (e.target.classList.contains('wrong-one') || e.target.classList.contains('wrong-two')) {
+    playerTwoScore = playerTwoScore-(parseInt(finalWagerTwoResult.innerText))
+  }
+  answerBoardEl.removeEventListener('click', finalAnswerSelectTwo)
+  console.log(playerTwoScore)
+}
 
 function startTimer(sec) {
   let counter = sec
