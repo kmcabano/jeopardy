@@ -1,8 +1,3 @@
-// light/dark mode
-// fj
-  // wagers, timer, etc
-
-
 const bodyEl = document.querySelector('body')
 const squaresEl = document.querySelectorAll(".squares")
 const boardEl = document.querySelector('.board')
@@ -23,6 +18,7 @@ const finalWagerOneInput = document.querySelector('input[type="text-wager-one')
 const finalWagerTwoInput = document.querySelector('input[type="text-wager-two')
 const finalWagerOneResult = document.querySelector('.player-one-wager')
 const finalWagerTwoResult = document.querySelector('.player-two-wager')
+const timerDisplay = document.querySelector('.timer')
 
 let turn, winner, keyPressed, isFinalJeopardy, finalOneAmt, finalTwoAmt
 let playerOneScore = 0
@@ -111,7 +107,6 @@ function clueSelect(e) {
       clueEl.classList.add(`daily-double-message`)
       wagerContainer.innerHTML = `<div class="daily-double-wager">$ <input type="text" placeholder="Make your wager!"></div>`
       wagerContainer.addEventListener('keydown', commenceDailyDouble)
-      
       function commenceDailyDouble(e){
         if (e.key === 'Enter') {
           if (turn === 1) {
@@ -241,9 +236,6 @@ function answerSelect(e) {
       messageEl.innerText = `${nameTwoEl.innerText}, select another clue!`
       boardEl.addEventListener('click', clueSelect)
     }
-    // boardAns[0].innerText = ``
-    // boardAns[1].innerText = ``
-    // boardAns[2].innerText = ``
     return
   }
   checkFinalJeopardy()
@@ -328,12 +320,6 @@ function setUpFinalJeopardy() {
   } else if (scoreTwoEl.innerText.includes('-')) {
     winner = 1
     checkWinner()
-  // } else if (parseInt(scoreOneEl.innerText) === '0') {
-  //   winner = -1
-  //   checkWinner()
-  // } else if (parseInt(scoreTwoEl.innerText) === '0') {
-  //   winner = 1
-    checkWinner()
   } else {
     boardEl.innerHTML = '<div class="FJF">FINAL</div><div class ="FJJ">JEOPARDY!</div>'
     boardEl.className = 'final-jeopardy-board'
@@ -345,6 +331,7 @@ function setUpFinalJeopardy() {
     boardAns[1].innerText = ``
     boardAns[2].innerText = ``
     finalWagerOneInput.addEventListener('keydown', wagerFinalOne)
+    finalWagerOneInput.focus()
   }
 }
 
@@ -356,6 +343,7 @@ function wagerFinalOne (e) {
     } 
     finalWagerOneResult.innerText = `${nameOneEl.innerText}'s wager': $${parseInt(e.target.value)}`
     finalWagerTwoInput.addEventListener('keydown', wagerFinalTwo)
+    finalWagerTwoInput.focus()
   }
 }
 
@@ -372,9 +360,23 @@ function wagerFinalTwo(e) {
 }
 
 function commenceFinalJeopardy(){
-  
+  messageEl.innerText = `Category: ${finalJeopardyQuestion.category}`
+  timerDisplay.innerText = `START!`
+  timerDisplay.addEventListener('click', /*startTimer(60)*/ startTimer(15))
 }
 
+
+function startTimer(sec) {
+  let counter = sec
+  const interval = setInterval(() => {
+    timerDisplay.innerText = `${counter}`
+    counter--
+    if (counter < 0) {
+      clearInterval(interval)
+      timerDisplay.innerText = `Time!`
+    }
+  }, 1000)
+}
 
 
 function checkWinner () {

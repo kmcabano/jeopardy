@@ -184,8 +184,8 @@ const catF = [
   wrongTwo: `What is element collecting?`}
 ]
 
-// Category: Africa
 const finalJeopardyQuestion = {
+  category: `Africa`,
   clue: `In November 2005 leaders of Spain & France joined in celebrating the 50th anniversary of this country's independence`,
   response: `Morocco`,
   wrongOne: `Tunisia`,

@@ -88,7 +88,7 @@ h1 {
   background-color: #cbcee1;
   box-shadow: 10px 10px black;
   outline: #010a78 2px dotted;
-  outline-offset: -10px;
+  outline-offset: -5px;
   display: flex;
   flex-direction: column;
   opacity: 0.9;
@@ -180,12 +180,10 @@ ul {
   z-index: 0;
 }
 
-.player-one-wager {
-  grid-area: "player-one-wager";
-}
-
-.player-two-wager {
-  grid-area: "player-two-wager";
+.timer {
+  font-size: 50px;
+  color: white;
+  font-family: HelveticaInseratLT;
 }
 
 .message {
