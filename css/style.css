@@ -46,8 +46,8 @@ body {
   /* Use a system font, if none are available use an available sans-sarif font */
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-  width: 100vw;
-  height: 100vh;
+  /* width: 100vw;
+  height: 100vh; */
   background-color: #cbcee1;
 }
 
@@ -197,7 +197,8 @@ ul {
   text-shadow: black 2px 2px;
   font-size: 20px;
   height: 100px;
-  text-align: center;
+  align-items: center;
+  justify-items: center;
   border: 4px solid black;
 }
 

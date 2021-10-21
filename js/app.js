@@ -97,6 +97,12 @@ function clueSelect(e) {
       return
     }
     if (e.target.classList.contains(`daily-double`)) {
+      boardAns[0].style.color =  'white'
+      boardAns[1].style.color =  'white'
+      boardAns[2].style.color =  'white'
+      boardAns[0].innerText =  ''
+      boardAns[1].innerText =  ''
+      boardAns[2].innerText =  ''
       clueEl.innerText = `DAILY DOUBLE`
       clueEl.classList.add(`daily-double-message`)
       wagerContainer.innerHTML = `<div class="daily-double-wager">$ <input type="text" placeholder="Make your wager!"></div>`
@@ -108,22 +114,19 @@ function clueSelect(e) {
             if (playerOneScore < 1000 && e.target.value > 1000) {
               messageEl.innerText = `You may only wager up to $1000!`
               return
+            } else if (e.target.value > playerOneScore && playerOneScore > 1000) {
+              messageEl.innerText = `You may only wager up to $${playerOneScore}!`
+              return
             }
           } else if (turn === -1) {
             if (playerTwoScore < 1000 && e.target.value > 1000) {
               messageEl.innerText = `You may only wager up to $1000!`
               return
-            }
-          }
-          if (turn === 1) {
-            if (e.target.value > playerOneScore) {
-              messageEl.innerText = `You may only wager up to $${playerOneScore}!`
-              return
-            }
-          } else if (turn === -1) {
-            if (e.target.value > playerTwoScore) {
-              messageEl.innerText = `You may only wager up to $${playerTwoScore}!`
-              return
+            } else if (turn === -1) {
+              if (e.target.value > playerTwoScore && playerTwoScore > 1000) {
+                messageEl.innerText = `You may only wager up to $${playerTwoScore}!`
+                return
+              }
             }
           }
           dailyWager = parseInt(e.target.value)
@@ -145,6 +148,9 @@ function clueSelect(e) {
         }
       }
     } else if (boardSq[clickedIdx] !== null && boardSq[clickedIdx]) {
+      boardAns[0].style.color =  'white'
+      boardAns[1].style.color =  'white'
+      boardAns[2].style.color =  'white'
       messageEl.innerText = ''
       boardSq[clickedIdx].innerText = null
       boardSq[clickedIdx].classList.add('clicked')
@@ -174,6 +180,8 @@ function buzz(e) {
   } else if (e.key === 'l') {
     turn = -1
     messageEl.innerText = `${nameTwoEl.innerText}, select answer!`
+  } else {
+    return
   }
   document.removeEventListener('keydown', buzz)
   answerBoardEl.addEventListener('click', answerSelect)
@@ -184,6 +192,8 @@ function answerSelect(e) {
     boardAns[0].innerText = ``
     boardAns[1].innerText = ``  
     boardAns[2].innerText = ``  
+    e.target.style.color = '#32cd32'
+    e.target.innerText = 'CORRECT!'
     if (turn === 1) {
       playerOneScore = playerOneScore+(parseInt(e.target.id.substring(1)))
       scoreOneEl.innerText = `$${playerOneScore}`
@@ -197,7 +207,7 @@ function answerSelect(e) {
       answerBoardEl.removeEventListener('click', answerSelect)
       boardEl.addEventListener('click', clueSelect)
     }
-  } else {
+  } else if (e.target.classList.contains('wrong-one') || e.target.classList.contains('wrong-two')) {
     console.log(`incorrect`)
     if (turn === 1) {
       playerOneScore = playerOneScore-(parseInt(e.target.id.substring(1)))
@@ -211,6 +221,8 @@ function answerSelect(e) {
       messageEl.innerText = `${nameOneEl.innerText}, select answer!`
     }
     answerBoardEl.classList.add(`${e.target.className}`)
+  } else {
+    return
   }
   if (answerBoardEl.classList.contains('wrong-two') && answerBoardEl.classList.contains('wrong-one')) {
     answerBoardEl.removeEventListener('click', answerSelect)
@@ -255,7 +267,7 @@ function doubleAnswerSelect(e) {
       messageEl.innerText = `${nameTwoEl.innerText}, select another clue!`
       boardEl.addEventListener('click', clueSelect)
     }
-  } else {
+  } else if (e.target.classList.contains('wrong-one') || e.target.classList.contains('wrong-two')) {
     if (turn === 1) {
       playerOneScore = playerOneScore-dailyWager
       scoreOneEl.innerText = `$${playerOneScore}`
@@ -278,6 +290,8 @@ function doubleAnswerSelect(e) {
   } else {
     scoreTwoEl.style.color = `white`
   }
+} else {
+  return
 }
 answerBoardEl.removeEventListener('click', doubleAnswerSelect)
 }
