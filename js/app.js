@@ -8,7 +8,6 @@ const squaresEl = document.querySelectorAll(".squares")
 const boardEl = document.querySelector('.board')
 const answersEl = document.querySelectorAll('.answer')
 const answerBoardEl = document.querySelector('.answer-board')
-const centerAnswerEl = document.getElementById('a2')
 const clueEl = document.querySelector('.clue')
 const twoEl = document.querySelectorAll('.two')
 const messageEl = document.querySelector('.message')
@@ -285,14 +284,11 @@ answerBoardEl.removeEventListener('click', doubleAnswerSelect)
 
 function checkFinalJeopardy() {
   const clueSq = boardSq.slice(6)
-  console.log(clueSq)
   if (clueSq.every((sq) => sq.classList.contains(`clicked`))) {
     isFinalJeopardy = true
-    console.log(`FJ`)
-    return
+    // commenceFinalJeopardy()
   } else {
     isFinalJeopardy = false
-    console.log(`NotFJ`)
     return
   }
 }
