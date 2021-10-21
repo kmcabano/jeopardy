@@ -102,7 +102,7 @@ function clueSelect(e) {
       clueEl.classList.add(`daily-double-message`)
       wagerContainer.innerHTML = `<div class="daily-double-wager">$ <input type="text" placeholder="Make your wager!"></div>`
       wagerContainer.addEventListener('keydown', commenceDailyDouble)
-
+      
       function commenceDailyDouble(e){
         if (e.key === 'Enter') {
           if (turn === 1) {
@@ -160,12 +160,11 @@ function clueSelect(e) {
       boardAns[2].className = `wrong-two`
       boardAns[2].id = `${(catEl[clickedCat][clickedVal].value)}`
       boardAns.sort(() => Math.random() - 0.5)
-
+      document.addEventListener('keydown', buzz)
     }
   } 
 e.target.removeEventListener('click', clueSelect)
 boardEl.removeEventListener('click', clueSelect)
-document.addEventListener('keydown', buzz)
 }
 
 function buzz(e) {
@@ -190,11 +189,13 @@ function answerSelect(e) {
       playerOneScore = playerOneScore+(parseInt(e.target.id.substring(1)))
       scoreOneEl.innerText = `$${playerOneScore}`
       messageEl.innerText = `${nameOneEl.innerText}, select another clue!`
+      answerBoardEl.removeEventListener('click', answerSelect)
       boardEl.addEventListener('click', clueSelect)
     } else if (turn === -1) {
       playerTwoScore = playerTwoScore+(parseInt(e.target.id.substring(1)))
       scoreTwoEl.innerText = `$${playerTwoScore}`
       messageEl.innerText = `${nameTwoEl.innerText}, select another clue!`
+      answerBoardEl.removeEventListener('click', answerSelect)
       boardEl.addEventListener('click', clueSelect)
     }
   } else {
@@ -226,7 +227,7 @@ function answerSelect(e) {
     boardAns[2].innerText = ``
     return
   }
-  // checkFinalJeopardy()
+  checkFinalJeopardy()
   if (scoreOneEl.innerText.includes(`-`)) {
     scoreOneEl.style.color = `red`
   } else {
@@ -244,7 +245,6 @@ function doubleAnswerSelect(e) {
     boardAns[0].innerText = ``
     boardAns[1].innerText = ``
     boardAns[2].innerText = ``
-    console.log(`correct`)
     if (turn === 1) {
       playerOneScore = playerOneScore+dailyWager
       scoreOneEl.innerText = `$${playerOneScore}`
@@ -257,7 +257,6 @@ function doubleAnswerSelect(e) {
       boardEl.addEventListener('click', clueSelect)
     }
   } else {
-    console.log(`incorrect`)
     if (turn === 1) {
       playerOneScore = playerOneScore-dailyWager
       scoreOneEl.innerText = `$${playerOneScore}`
@@ -269,7 +268,7 @@ function doubleAnswerSelect(e) {
       messageEl.innerText = `${nameTwoEl.innerText}, select another clue!`
       boardEl.addEventListener('click', clueSelect)
   }
-  // checkFinalJeopardy()
+  checkFinalJeopardy()
   if (scoreOneEl.innerText.includes(`-`)) {
     scoreOneEl.style.color = `red`
   } else {
@@ -282,4 +281,18 @@ function doubleAnswerSelect(e) {
   }
 }
 answerBoardEl.removeEventListener('click', doubleAnswerSelect)
+}
+
+function checkFinalJeopardy() {
+  const clueSq = boardSq.slice(6)
+  console.log(clueSq)
+  if (clueSq.every((sq) => sq.classList.contains(`clicked`))) {
+    isFinalJeopardy = true
+    console.log(`FJ`)
+    return
+  } else {
+    isFinalJeopardy = false
+    console.log(`NotFJ`)
+    return
+  }
 }
