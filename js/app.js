@@ -19,8 +19,12 @@ const scoreTwoEl = document.querySelector('.player-two-score')
 const ruleMsg = document.querySelector('.rules')
 const ruleBtn = document.querySelector('#rules')
 const wagerContainer = document.querySelector('.wager-container')
+const finalWagerOneInput = document.querySelector('input[type="text-wager-one')
+const finalWagerTwoInput = document.querySelector('input[type="text-wager-two')
+const finalWagerOneResult = document.querySelector('.player-one-wager')
+const finalWagerTwoResult = document.querySelector('.player-two-wager')
 
-let turn, winner, keyPressed, isFinalJeopardy
+let turn, winner, keyPressed, isFinalJeopardy, finalOneAmt, finalTwoAmt
 let playerOneScore = 0
 let playerTwoScore = 0
 let boardSq = [... squaresEl]
@@ -309,7 +313,7 @@ function checkFinalJeopardy() {
   const clueSq = boardSq.slice(6, 7) //for testing purposes
   if (clueSq.every((sq) => sq.classList.contains(`clicked`))) {
     isFinalJeopardy = true
-    commenceFinalJeopardy()
+    setUpFinalJeopardy()
   } else {
     isFinalJeopardy = false
     return
@@ -317,7 +321,7 @@ function checkFinalJeopardy() {
   checkWinner()
 }
 
-function commenceFinalJeopardy() {
+function setUpFinalJeopardy() {
   if (scoreOneEl.innerText.includes('-')) {
     winner = -1
     checkWinner()
@@ -335,11 +339,42 @@ function commenceFinalJeopardy() {
     boardEl.className = 'final-jeopardy-board'
     messageEl.innerText = 'Make your wagers!'
     document.querySelector('.final-jeopardy-wager').style.zIndex = '1'
+    finalWagerOneInput.placeholder = `${nameOneEl.innerText}'s wager'`
+    finalWagerTwoInput.placeholder = `${nameTwoEl.innerText}'s wager'`
     boardAns[0].innerText = ``
     boardAns[1].innerText = ``
     boardAns[2].innerText = ``
+    finalWagerOneInput.addEventListener('keydown', wagerFinalOne)
   }
 }
+
+function wagerFinalOne (e) {
+  if (e.key === 'Enter') {
+    if (e.target.value > playerOneScore) {
+      messageEl.innerText = `You may only wager up to $${playerOneScore}`
+      return
+    } 
+    finalWagerOneResult.innerText = `${nameOneEl.innerText}'s wager': $${parseInt(e.target.value)}`
+    finalWagerTwoInput.addEventListener('keydown', wagerFinalTwo)
+  }
+}
+
+function wagerFinalTwo(e) {
+  if (e.key === 'Enter') {
+    if (e.target.value > playerTwoScore) {
+      messageEl.innerText = `You may only wager up to $${playerTwoScore}`
+      return
+    }
+    finalWagerTwoResult.innerText = `${nameTwoEl.innerText}'s wager': $${parseInt(e.target.value)}`
+    messageEl.innerText = ''
+    commenceFinalJeopardy()
+  }
+}
+
+function commenceFinalJeopardy(){
+  
+}
+
 
 
 function checkWinner () {
