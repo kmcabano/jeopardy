@@ -9,7 +9,6 @@ const boardEl = document.querySelector('.board')
 const answersEl = document.querySelectorAll('.answer')
 const answerBoardEl = document.querySelector('.answer-board')
 const clueEl = document.querySelector('.clue')
-const twoEl = document.querySelectorAll('.two')
 const messageEl = document.querySelector('.message')
 const nameOneEl = document.querySelector('.player-one-name')
 const nameOneInput = document.querySelector('input[type=name-text-one]')
@@ -45,6 +44,7 @@ function init() {
   boardSq[Math.floor(Math.random() * (36 - 18) + 18)].classList.add('daily-double')
   scoreOneEl.innerText = `$${playerOneScore}`
   scoreTwoEl.innerText = `$${playerTwoScore}`
+  winner = null
   turn = 1
   isFinalJeopardy = false
   messageEl.innerText = `Input Player Names Above`
@@ -305,12 +305,49 @@ answerBoardEl.removeEventListener('click', doubleAnswerSelect)
 }
 
 function checkFinalJeopardy() {
-  const clueSq = boardSq.slice(6)
+  // const clueSq = boardSq.slice(6)
+  const clueSq = boardSq.slice(6, 7) //for testing purposes
   if (clueSq.every((sq) => sq.classList.contains(`clicked`))) {
     isFinalJeopardy = true
-    // commenceFinalJeopardy()
+    commenceFinalJeopardy()
   } else {
     isFinalJeopardy = false
     return
+  }
+  checkWinner()
+}
+
+function commenceFinalJeopardy() {
+  if (scoreOneEl.innerText.includes('-')) {
+    winner = -1
+    checkWinner()
+  } else if (scoreTwoEl.innerText.includes('-')) {
+    winner = 1
+    checkWinner()
+  // } else if (parseInt(scoreOneEl.innerText) === '0') {
+  //   winner = -1
+  //   checkWinner()
+  // } else if (parseInt(scoreTwoEl.innerText) === '0') {
+  //   winner = 1
+    checkWinner()
+  } else {
+    boardEl.innerHTML = '<div class="FJF">FINAL</div><div class ="FJJ">JEOPARDY!</div>'
+    boardEl.className = 'final-jeopardy-board'
+    messageEl.innerText = 'Make your wagers!'
+    document.querySelector('.final-jeopardy-wager').style.zIndex = '1'
+    boardAns[0].innerText = ``
+    boardAns[1].innerText = ``
+    boardAns[2].innerText = ``
+  }
+}
+
+
+function checkWinner () {
+  if (winner === null) {
+    return
+  } else if (winner === 1) {
+    console.log(`${nameOneEl.innerText} wins!`)
+  } else if (winner === -1) {
+    console.log(`${nameTwoEl.innerText} wins!`)
   }
 }
