@@ -368,7 +368,7 @@ function wagerFinalOne (e) {
       return
     } 
     finalOneAmt = parseInt(e.target.value)
-    finalWagerOneResult.innerText = `${nameOneEl.innerText} made their wager!`
+    finalWagerOneResult.innerText = `${nameOneEl.innerText} wagered!`
     finalWagerTwoInput.addEventListener('keydown', wagerFinalTwo)
     finalWagerTwoInput.focus()
   }
@@ -381,7 +381,7 @@ function wagerFinalTwo(e) {
       return
     }
     finalTwoAmt = parseInt(e.target.value)
-    finalWagerTwoResult.innerText = `${nameTwoEl.innerText} made their wager!`
+    finalWagerTwoResult.innerText = `${nameTwoEl.innerText} wagered!`
     messageEl.innerText = `Category: ${finalJeopardyQuestion.category}`
     timerDisplay.innerText = `START!`
     timerDisplay.addEventListener('click', commenceFinalJeopardy)
