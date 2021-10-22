@@ -412,6 +412,8 @@ function finalAnswerSelectOne(e) {
     playerOneScore = playerOneScore+finalOneAmt
   } else if (e.target.classList.contains('wrong-one') || e.target.classList.contains('wrong-two')) {
     playerOneScore = playerOneScore-finalOneAmt
+  } else {
+    return
   }
   nameOneEl.classList.add('animate__animated')
   nameOneEl.classList.add('animate__jello')
@@ -426,6 +428,8 @@ function finalAnswerSelectTwo(e){
     playerTwoScore = playerTwoScore+finalTwoAmt
   } else if (e.target.classList.contains('wrong-one') || e.target.classList.contains('wrong-two')) {
     playerTwoScore = playerTwoScore-finalTwoAmt
+  } else {
+    return
   }
   nameTwoEl.classList.add('animate__animated')
   nameTwoEl.classList.add('animate__jello')
