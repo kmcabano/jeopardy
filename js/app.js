@@ -402,6 +402,7 @@ function commenceFinalJeopardy(){
   boardAns[1].className = 'wrong-one'
   boardAns[2].className = 'wrong-two'
   boardAns.sort(() => Math.random() - 0.5)
+  finalWagerOneResult.innerText = `${nameOneEl.innerText}, choose an answer!`
   console.log(boardAns)
   answerBoardEl.addEventListener('click', finalAnswerSelectOne)
 }
@@ -414,6 +415,8 @@ function finalAnswerSelectOne(e) {
   }
   nameOneEl.classList.add('animate__animated')
   nameOneEl.classList.add('animate__jello')
+  finalWagerOneResult.innerText = ``
+  finalWagerTwoResult.innerText = `${nameTwoEl.innerText}, choose an answer!`
   answerBoardEl.removeEventListener('click', finalAnswerSelectOne)
   answerBoardEl.addEventListener('click', finalAnswerSelectTwo)
 }
@@ -426,6 +429,7 @@ function finalAnswerSelectTwo(e){
   }
   nameTwoEl.classList.add('animate__animated')
   nameTwoEl.classList.add('animate__jello')
+  finalWagerTwoResult.innerText = ``
   answerBoardEl.removeEventListener('click', finalAnswerSelectTwo)
 }
 
