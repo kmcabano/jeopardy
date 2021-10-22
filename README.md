@@ -71,6 +71,10 @@ Whichever player has the highest score is the winner!
 
 ## Screenshots
 
+Original Wireframe of Main Page
+
+![wireframe](/images/screenshots/00wireframe.png)
+
 Welcome Screen
 
 ![welcome-screen](images/screenshots/01-welcome-screen.png)
@@ -126,16 +130,18 @@ Sound effects found [here](https://www.myinstants.com/search/?name=Jeopardy)
 
 Features I hope to eventually implement:
 
-  1) Create the Double Jeopardy round before Final Jeopardy - reinitialize board with new clues, double dollar amounts, and an additional daily double
+  1) Make the rule box more comprehensive, and accessible at all times
 
-  2) Eliminate multiple choice - process and assess typed responses
+  2) Create the Double Jeopardy round before Final Jeopardy - reinitialize board with new clues, double dollar amounts, and an additional daily double
 
-  3) Add a third player
+  3) Eliminate multiple choice - process and assess typed responses
 
-  4) Access a large database of possible categories and clues, initializing each game with a random selection of categories
+  4) Add a third player
 
-  5) Create a buzzer app that players can access on their mobile devices
+  5) Access a large database of possible categories and clues, initializing each game with a random selection of categories, or perhaps the ability to call up a specific date's game
 
-  6) Create a host app, where a host player receive the typed responses and manually confirm if they are correct/incorrect
+  6) Create a buzzer app that players can access on their mobile devices
 
-  7) After items 5 and 6 are implemented, create a mobile-friendly version of the game display that could then be used with those apps
+  7) Create a host app, where a host player receive the typed responses and manually confirm if they are correct/incorrect
+
+  8) After items 5 and 6 are implemented, create a mobile-friendly version of the game display that could then be used with those apps
