@@ -190,9 +190,13 @@ function buzz(e) {
   if (e.key === 'a') {
     turn = 1
     messageEl.innerText = `${nameOneEl.innerText}, select answer!`
+    nameOneEl.classList.add('animate__animated')
+    nameOneEl.classList.add('animate__heartBeat')
   } else if (e.key === 'l') {
     turn = -1
     messageEl.innerText = `${nameTwoEl.innerText}, select answer!`
+    nameTwoEl.classList.add('animate__animated')
+    nameTwoEl.classList.add('animate__heartBeat')
   } else {
     return
   }
@@ -265,6 +269,10 @@ function answerSelect(e) {
   } else {
     scoreTwoEl.style.color = `white`
   }
+  nameOneEl.classList.remove('animate__animated')
+  nameOneEl.classList.remove('animate__heartBeat')
+  nameTwoEl.classList.remove('animate__animated')
+  nameTwoEl.classList.remove('animate__heartBeat')
 }
 
 function doubleAnswerSelect(e) {
@@ -404,9 +412,10 @@ function finalAnswerSelectOne(e) {
   } else if (e.target.classList.contains('wrong-one') || e.target.classList.contains('wrong-two')) {
     playerOneScore = playerOneScore-finalOneAmt
   }
+  nameOneEl.classList.add('animate__animated')
+  nameOneEl.classList.add('animate__jello')
   answerBoardEl.removeEventListener('click', finalAnswerSelectOne)
   answerBoardEl.addEventListener('click', finalAnswerSelectTwo)
-  console.log(playerOneScore)
 }
 
 function finalAnswerSelectTwo(e){
@@ -415,8 +424,9 @@ function finalAnswerSelectTwo(e){
   } else if (e.target.classList.contains('wrong-one') || e.target.classList.contains('wrong-two')) {
     playerTwoScore = playerTwoScore-finalTwoAmt
   }
+  nameTwoEl.classList.add('animate__animated')
+  nameTwoEl.classList.add('animate__jello')
   answerBoardEl.removeEventListener('click', finalAnswerSelectTwo)
-  console.log(playerTwoScore)
 }
 
 function startTimer(sec) {
@@ -455,6 +465,9 @@ function checkWinner () {
     return
   } else if (winner === 1) {
     boardEl.innerText = `${nameOneEl.innerText} wins!`
+    boardAns[0].style.color =  'white'
+    boardAns[1].style.color =  'white'
+    boardAns[2].style.color =  'white' 
     boardAns[0].innerText = `${nameOneEl.innerText}!!!!`
     boardAns[1].innerText = `${nameOneEl.innerText}!!!!`
     boardAns[2].innerText = `${nameOneEl.innerText}!!!!`
@@ -464,6 +477,9 @@ function checkWinner () {
     boardAns[0].innerText = `${nameTwoEl.innerText}!!!!`
     boardAns[1].innerText = `${nameTwoEl.innerText}!!!!`
     boardAns[2].innerText = `${nameTwoEl.innerText}!!!!`
+    boardAns[0].style.color =  'white'
+    boardAns[1].style.color =  'white'
+    boardAns[2].style.color =  'white'
     finalSong.play
   } else if (winner === tie) {
     boardEl.innerText = `It's a tie!`
