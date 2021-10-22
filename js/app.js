@@ -368,7 +368,7 @@ function wagerFinalOne (e) {
       return
     } 
     finalOneAmt = parseInt(e.target.value)
-    finalWagerOneResult.innerText = `${nameOneEl.innerText} wagered $${finalOneAmt}`
+    finalWagerOneResult.innerText = `${nameOneEl.innerText} made their wager!`
     finalWagerTwoInput.addEventListener('keydown', wagerFinalTwo)
     finalWagerTwoInput.focus()
   }
@@ -381,7 +381,7 @@ function wagerFinalTwo(e) {
       return
     }
     finalTwoAmt = parseInt(e.target.value)
-    finalWagerTwoResult.innerText = `${nameTwoEl.innerText} wagered $${finalTwoAmt}`
+    finalWagerTwoResult.innerText = `${nameTwoEl.innerText} made their wager!`
     messageEl.innerText = `Category: ${finalJeopardyQuestion.category}`
     timerDisplay.innerText = `START!`
     timerDisplay.addEventListener('click', commenceFinalJeopardy)
@@ -466,20 +466,21 @@ function checkWinner () {
   } else if (winner === 1) {
     boardEl.innerText = `${nameOneEl.innerText} wins!`
     boardAns[0].style.color =  'white'
-    boardAns[1].style.color =  'white'
+    boardAns[1].style.color =  '#32cd32'
     boardAns[2].style.color =  'white' 
-    boardAns[0].innerText = `${nameOneEl.innerText}!!!!`
-    boardAns[1].innerText = `${nameOneEl.innerText}!!!!`
-    boardAns[2].innerText = `${nameOneEl.innerText}!!!!`
+    boardAns[0].innerText = `${nameOneEl.innerText} wagered $${finalOneAmt}`
+    boardAns[1].innerText = `${finalJeopardyQuestion.response}`
+    boardAns[2].innerText = `${nameTwoEl.innerText} wagered $${finalTwoAmt}`
     finalSong.play()
   } else if (winner === -1) {
     boardEl.innerText = `${nameTwoEl.innerText} wins!`
-    boardAns[0].innerText = `${nameTwoEl.innerText}!!!!`
-    boardAns[1].innerText = `${nameTwoEl.innerText}!!!!`
-    boardAns[2].innerText = `${nameTwoEl.innerText}!!!!`
     boardAns[0].style.color =  'white'
-    boardAns[1].style.color =  'white'
+    boardAns[1].style.color =  '#32cd32'
     boardAns[2].style.color =  'white'
+    boardAns[0].innerText = `${nameOneEl.innerText} wagered $${finalOneAmt}`
+    boardAns[1].innerText = `${finalJeopardyQuestion.response}`
+    boardAns[2].innerText = `${nameTwoEl.innerText} wagered $${finalTwoAmt}`
+    boardAns[0] = boardAns[boardAns.indexOf()]
     finalSong.play
   } else if (winner === tie) {
     boardEl.innerText = `It's a tie!`
