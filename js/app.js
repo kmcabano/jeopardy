@@ -340,10 +340,10 @@ function checkFinalJeopardy() {
 }
 
 function setUpFinalJeopardy() {
-  if (scoreOneEl.innerText.includes('-')) {
+  if (scoreOneEl.innerText.includes('-') || playerOneScore === 0) {
     winner = -1
     checkWinner()
-  } else if (scoreTwoEl.innerText.includes('-')) {
+  } else if (scoreTwoEl.innerText.includes('-') || playerTwoScore === 0) {
     winner = 1
     checkWinner()
   } else {
@@ -485,4 +485,6 @@ function checkWinner () {
     boardEl.innerText = `It's a tie!`
   }
   boardEl.className = `winner`
+  boardEl.classList.add('animate__animated')
+  boardEl.classList.add('animate__flip')
 }
