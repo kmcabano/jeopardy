@@ -115,16 +115,18 @@ Animate.css, Bootstrap libraries also used
 
 ## Credits
 
-Jeopardy design information found [here](https://fontsinuse.com/uses/5507/jeopardy-game-show)
+[Jeopardy design information](https://fontsinuse.com/uses/5507/jeopardy-game-show)
 
 Fonts sourced from [here](https://download-free-fonts.com)
 except Steile Futura BQ [here](https://wfonts.com) and Gyparody from Adobe Fonts.
+
+Sound effects found [here](https://www.myinstants.com/search/?name=Jeopardy)
 
 ## The Future!
 
 Features I hope to eventually implement:
 
-  1) Create the Double Jeopardy round before final jeopardy - reinitialize board with new clues, double dollar amounts, and an additional daily double
+  1) Create the Double Jeopardy round before Final Jeopardy - reinitialize board with new clues, double dollar amounts, and an additional daily double
 
   2) Eliminate multiple choice - process and assess typed responses
 
