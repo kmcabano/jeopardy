@@ -403,6 +403,7 @@ function commenceFinalJeopardy(){
   boardAns[2].className = 'wrong-two'
   boardAns.sort(() => Math.random() - 0.5)
   finalWagerOneResult.innerText = `${nameOneEl.innerText}, choose an answer!`
+  finalWagerTwoResult.innerText = ``
   console.log(boardAns)
   answerBoardEl.addEventListener('click', finalAnswerSelectOne)
 }
