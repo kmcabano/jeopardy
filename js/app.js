@@ -164,6 +164,9 @@ function clueSelect(e) {
       messageEl.innerText = ''
       boardSq[clickedIdx].innerText = null
       boardSq[clickedIdx].classList.add('clicked')
+      answerBoardEl.classList.remove('response')
+      answerBoardEl.classList.remove('wrong-one')
+      answerBoardEl.classList.remove('wrong-two')
       clueEl.innerText = `${(catEl[clickedCat][clickedVal].clue.toUpperCase())}`
       boardAns[0].innerText = `${(catEl[clickedCat][clickedVal].response)}`
       boardAns[0].className = `response`
@@ -316,7 +319,8 @@ answerBoardEl.removeEventListener('click', doubleAnswerSelect)
 }
 
 function checkFinalJeopardy() {
-  const clueSq = boardSq.slice(6)
+  // const clueSq = boardSq.slice(6)
+  const clueSq = boardSq.slice(6, 7)
   if (clueSq.every((sq) => sq.classList.contains(`clicked`))) {
     isFinalJeopardy = true
     setUpFinalJeopardy()
