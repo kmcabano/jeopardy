@@ -8,7 +8,7 @@ I love trivia and Jeopardy! is probably my favorite game show. Every Tuesday, a 
 
 ## Getting Started
 
-You can find a link to the live game [here](https://https://kmc-jeopardy.netlify.app/).
+You can find a link to the live game [here](https://kmc-jeopardy.netlify.app/).
 This is meant to be played in the web browser, with two players. A keyboard is required, so this is not mobile-compatible as of now.
 
 ## Rules
