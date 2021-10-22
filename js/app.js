@@ -400,7 +400,7 @@ function commenceFinalJeopardy(){
   boardAns[2].innerText = `${finalJeopardyQuestion.wrongTwo}`
   boardAns[0].className = 'response'
   boardAns[1].className = 'wrong-one'
-  boardAns[1].className = 'wrong-two'
+  boardAns[2].className = 'wrong-two'
   boardAns.sort(() => Math.random() - 0.5)
   console.log(boardAns)
   answerBoardEl.addEventListener('click', finalAnswerSelectOne)
