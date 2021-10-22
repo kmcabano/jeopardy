@@ -5,8 +5,8 @@ const catA = [
   { value: '$200',
   clue: `The color of this ring around the pupil is inherited`,
   response: `What is iris?`,
-  wrongOne: `What is pupil`,
-  wrongTwo: `What is cornea`},
+  wrongOne: `What is pupil?`,
+  wrongTwo: `What is cornea?`},
   {value: '$400',
   clue: `In this disease increased fluid pressure in the eye damages the optic nerve`,
   response: `What is glaucoma?`,
@@ -41,23 +41,23 @@ const catB = [
   {value: '$400',
   clue: `Before he ran off & ran the circus, he published a Danbury newspaper & was arrested for libel`,
   response: `Who is P.T. Barnum?`,
-  wrongOne: `Wrong`,
-  wrongTwo: `Wrong`},
+  wrongOne: `Who is James Bailey?`,
+  wrongTwo: `Who is August Ringling?`},
   {value: '$600',
   clue: `This Yale grad put out "An American Dictionary of the English Language" in 1828, when he was 70`,
   response: `Who is Noah Webster?`,
-  wrongOne: `Wrong`,
-  wrongTwo: `Wrong`},
+  wrongOne: `Who is Abraham Bishop?`,
+  wrongTwo: `Who is Mark Twain?`},
   {value: '$800',
   clue: `In 1868 a church in Hartford, Connecticut was founded in memory of this revolver inventor & some of his children`,
   response: `Who is Samuel Colt?`,
-  wrongOne: `Wrong`,
-  wrongTwo: `Wrong`},
+  wrongOne: `Who is Horace Smith?`,
+  wrongTwo: `Who is Daniel B. Wesson?`},
   {value: '$1000',
   clue: `The last name of this Connecticut-born jeweler is seen on coveted blue boxes`,
   response: `What is Tiffany?`,
-  wrongOne: `Wrong`,
-  wrongTwo: `Wrong`}
+  wrongOne: `What is Winston?`,
+  wrongTwo: `What is Cartier?`}
 ]
 
 // Category 3:
@@ -67,28 +67,28 @@ const catC = [
   { value: '$200',
   clue: `It's the monetary unit of Russia & of Belarus`,
   response: `What is the ruble?`,
-  wrongOne: `Wrong`,
-  wrongTwo: `Wrong`},
+  wrongOne: `What is the euro?`,
+  wrongTwo: `What is the Russian dollar?`},
   {value: '$400',
   clue: `Todd Gurley for the Falcons, or Ezekiel Elliott for the Cowboys`,
   response: `What is running back?`,
-  wrongOne: `Wrong`,
-  wrongTwo: `Wrong`},
+  wrongOne: `What is fullback?`,
+  wrongTwo: `What is linebacker?`},
   {value: '$600',
   clue: `It's the opposite of urban`,
   response: `What is rural?`,
-  wrongOne: `Wrong`,
-  wrongTwo: `Wrong`},
+  wrongOne: `What is country?`,
+  wrongTwo: `What is uncivilized?`},
   {value: '$800',
   clue: `This 6-letter grouse gets its name from its collar of neck feathers displayed by the male`,
   response: `What is ruffed?`,
-  wrongOne: `Wrong`,
-  wrongTwo: `Wrong`},
+  wrongOne: `What is rudest?`,
+  wrongTwo: `What is truth's?`},
   {value: '$1000',
   clue: `This root vegetable is believed to be a cross between a cabbage & a turnip`,
   response: `What is a rutabaga?`,
-  wrongOne: `Wrong`,
-  wrongTwo: `Wrong`}
+  wrongOne: `What is a prune?`,
+  wrongTwo: `What is a radish?`}
 ]
 
 // Category 4:
@@ -150,7 +150,7 @@ const catE = [
   clue: `This Alpine peak inspired Shelley to write a 5-part poem`,
   response: `What is Mont Blanc?`,
   wrongOne: `What is the Matterhorn?`,
-  wrongTwo: ``}
+  wrongTwo: `What is Weisshorn?`}
 ]
 
 // Category 6
@@ -187,9 +187,9 @@ const catF = [
 const finalJeopardyQuestion = {
   category: `Africa`,
   clue: `In November 2005, leaders of Spain & France joined in celebrating the 50th anniversary of this country's independence`,
-  response: `Morocco`,
-  wrongOne: `Tunisia`,
-  wrongTwo: `Algeria`,
+  response: `What is Morocco?`,
+  wrongOne: `What is Tunisia?`,
+  wrongTwo: `What is Algeria?`,
 }
 
 

@@ -405,3 +405,19 @@ input[type=name-text-two] {
   font-family: Swiss911;
   text-shadow: black 3px 3px;
 }
+
+.winner {
+  grid-area: 2 / 1 / 5 / 2;
+  background-color: #010a78;
+  border: 4px solid black;
+  width: 800px;
+  aspect-ratio: 16/9;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  line-height: 130px;
+  font-family: gyparody;
+  font-size: 100px;
+}

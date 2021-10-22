@@ -32,12 +32,10 @@ let boardAns = [... answersEl]
 nameOneInput.addEventListener('keydown', namePlayerOne)
 ruleBtn.addEventListener('click', closeRules)
 
-/*----------------Audio----------------*/
 const finalSong = new Audio('../audio/final-jeopardy.mp3')
 const correctSound = new Audio('../audio/correct-answer.mp3')
 const wrongSound = new Audio ('../audio/wrong-answer.mp3')
 const dailyDoubleSound = new Audio('../audio/daily-double.mp3')
-/*-------------------------------------*/
 
 init()
 
@@ -230,9 +228,7 @@ function answerSelect(e) {
       messageEl.innerText = `${nameOneEl.innerText}, select answer!`
     }
     answerBoardEl.classList.add(`${e.target.className}`)
-  } else {
-    return
-  }
+  } 
   if (answerBoardEl.classList.contains('wrong-two') && answerBoardEl.classList.contains('wrong-one')) {
     answerBoardEl.removeEventListener('click', answerSelect)
     e.target.style.color = 'red'
@@ -246,7 +242,8 @@ function answerSelect(e) {
       messageEl.innerText = `${nameTwoEl.innerText}, select another clue!`
       boardEl.addEventListener('click', clueSelect)
     }
-    return
+    answerBoardEl.classList.remove('wrong-one')
+    answerBoardEl.classList.remove('wrong-two')
   }
   checkFinalJeopardy()
   if (scoreOneEl.innerText.includes(`-`)) {
@@ -384,7 +381,11 @@ function commenceFinalJeopardy(){
   boardAns[0].innerText = `${finalJeopardyQuestion.response}`
   boardAns[1].innerText = `${finalJeopardyQuestion.wrongOne}`
   boardAns[2].innerText = `${finalJeopardyQuestion.wrongTwo}`
+  boardAns[0].className = 'response'
+  boardAns[1].className = 'wrong-one'
+  boardAns[1].className = 'wrong-two'
   boardAns.sort(() => Math.random() - 0.5)
+  console.log(boardAns)
   answerBoardEl.addEventListener('click', finalAnswerSelectOne)
 }
 
@@ -418,17 +419,45 @@ function startTimer(sec) {
       clearInterval(interval)
       timerDisplay.innerText = `Time!`
       messageEl.innerHTML = `<div class="reveal">REVEAL</div>`
+      document.querySelector('.reveal').addEventListener('click', totalFinal)
     }
   }, 1000)
 }
 
+function totalFinal() {
+  scoreOneEl.innerText = `$${playerOneScore}`
+  scoreTwoEl.innerHTML = `$${playerTwoScore}`
+  messageEl.innerText = ``
+  boardAns[0].innerText = ``
+  boardAns[1].innerText = ``
+  boardAns[2].innerText = ``
+  if (playerOneScore > playerTwoScore) {
+    winner = 1
+  } else if (playerTwoScore > playerOneScore) {
+    winner = -1
+  } else if (playerOneScore === playerTwoScore) {
+    winner = tie
+  }
+  checkWinner()
+}
 
 function checkWinner () {
   if (winner === null) {
     return
   } else if (winner === 1) {
-    console.log(`${nameOneEl.innerText} wins!`)
+    boardEl.innerText = `${nameOneEl.innerText} wins!`
+    boardAns[0].innerText = `${nameOneEl.innerText}!!!!`
+    boardAns[1].innerText = `${nameOneEl.innerText}!!!!`
+    boardAns[2].innerText = `${nameOneEl.innerText}!!!!`
+    finalSong.play()
   } else if (winner === -1) {
-    console.log(`${nameTwoEl.innerText} wins!`)
+    boardEl.innerText = `${nameTwoEl.innerText} wins!`
+    boardAns[0].innerText = `${nameTwoEl.innerText}!!!!`
+    boardAns[1].innerText = `${nameTwoEl.innerText}!!!!`
+    boardAns[2].innerText = `${nameTwoEl.innerText}!!!!`
+    finalSong.play
+  } else if (winner === tie) {
+    boardEl.innerText = `It's a tie!`
   }
+  boardEl.className = `winner`
 }
