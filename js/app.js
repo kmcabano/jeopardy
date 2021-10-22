@@ -328,7 +328,7 @@ answerBoardEl.removeEventListener('click', doubleAnswerSelect)
 
 function checkFinalJeopardy() {
   // const clueSq = boardSq.slice(6)
-  const clueSq = boardSq.slice(6, 7)
+  const clueSq = boardSq.slice(6, 7) // for presentation purposes
   if (clueSq.every((sq) => sq.classList.contains(`clicked`))) {
     isFinalJeopardy = true
     setUpFinalJeopardy()
