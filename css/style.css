@@ -49,11 +49,21 @@ body {
   /* width: 100vw;
   height: 100vh; */
   background-color: #cbcee1;
+  --border-color: black;
+  --dark-button-color: #cbcee1;
+  --element-bg-color: #010a78;
+  --clue-text-color: #d7a04b;
+  --heading-text-color: white;
 }
 
 /* #01042b */
 body.dark {
   background-color: #01042b;
+  --border-color: #cbcee1;
+  --dark-button-color: #ff5e00;
+  --element-bg-color: #000000;
+  --clue-text-color: #ff5e00;
+  --heading-text-color: #d7a04b;
 }
 
 .container {
@@ -74,10 +84,10 @@ h1 {
   text-align: center;
   font-family: gyparody;
   font-size: 48px;
-  color: white;
-  background-color: #010a78;
+  color: var(--heading-text-color);
+  background-color: var(--element-bg-color);
   margin-top: 10px;
-  border: 4px solid black;
+  border: 4px solid var(--border-color);
 }
 
 .rules {
@@ -120,13 +130,13 @@ h1 {
   border-radius: 5px;
   margin-left: auto;
   margin-right: auto;
-  background-color: rgba(1, 10, 120, 0.85);
+  background-color: #010a78d9;
   box-shadow: 10px 10px rgba(0, 0, 0, 0.7);
   outline-offset: -10px;
   display: flex;
   flex-direction: row;
   font-size: 36px;
-  color: white;
+  color: var(--heading-text-color);
 }
 
 h2 {
@@ -151,19 +161,19 @@ ul {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(6, 1fr);
-  border: 4px solid black;
+  border: 4px solid var(--border-color);
   width: 800px;
   aspect-ratio: 16/9;
 }
 
 .clue {
   grid-area: 3 / 2 / 4 / 4  ;
-  background-color: #010a78; 
-  color: white;
+  background-color: var(--element-bg-color); 
+  color: var(--heading-text-color);
   font-family: ITCKorinna;
   text-shadow: black 2px 2px;
   font-size: 20px;
-  border: 4px solid black;
+  border: 4px solid var(--border-color);
   text-align: center;
   display: flex;
   align-items: center;
@@ -172,12 +182,12 @@ ul {
 
 .final-jeopardy-wager {
   grid-area: 3 / 2 / 4 / 4  ;
-  background-color: #010a78; 
-  color: white;
+  background-color: var(--element-bg-color); 
+  color: var(--heading-text-color);
   font-family: ITCKorinna;
   text-shadow: black 2px 2px;
   font-size: 20px;
-  border: 4px solid black;
+  border: 4px solid var(--border-color);
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -187,16 +197,16 @@ ul {
 
 .timer {
   font-size: 50px;
-  color: white;
+  color: var(--heading-text-color);
   font-family: HelveticaInseratLT;
 }
 
 .message {
   grid-area: 4 / 2 / 5 / 4;
-  background-color: #010a78;
-  border: 4px solid black;
+  background-color: var(--element-bg-color);
+  border: 4px solid var(--border-color);
   font-family: ITCKorinna;
-  color: white;
+  color: var(--heading-text-color);
   font-size: 28px;
   display: flex;
   justify-content: center;
@@ -218,7 +228,7 @@ ul {
   grid-template-areas: 
     "a1 a2 a3"; 
   grid-area: 5 / 1 / 6 / 4;
-  background-color: #010a78; 
+  background-color: var(--element-bg-color); 
   color: white;
   font-family: ITCKorinna;
   text-shadow: black 2px 2px;
@@ -226,7 +236,7 @@ ul {
   height: 100px;
   align-items: center;
   justify-items: center;
-  border: 4px solid black;
+  border: 4px solid var(--border-color);
 }
 
 .a1 {
@@ -243,13 +253,14 @@ ul {
 button#dark {
   grid-area: 1 / 3 / 2 / 4;
   margin-top: 25px;
-  width: 40px;
+  width: 70px;
   height: 30px;
   padding: 0px 0px;
   border-radius: 5px;
   font-size: 16px;
   text-align: center;
-  /* background-color: #070608; */
+  background-color: #5a5a5a;
+  color: var(--dark-button-color);
   z-index: 2;
 }
 
@@ -260,12 +271,12 @@ button#rules {
 }
 
 .squares {
-  border: 3px solid black;
-  background-color: #010a78; 
+  border: 3px solid var(--border-color);
+  background-color: var(--element-bg-color); 
   font-family: HelveticaInseratLT;
   font-size: 18px;
   line-height: 20px;
-  color: white;
+  color: var(--heading-text-color);
   text-shadow: black 1px 1px;
   display: flex;
   align-items: center;
@@ -275,13 +286,13 @@ button#rules {
 
 .final-jeopardy-board {
   grid-area: 2 / 1 / 5 / 2;
-  background-color: #010a78;
-  border: 4px solid black;
+  background-color: var(--element-bg-color);
+  border: 4px solid var(--border-color);
   width: 800px;
   aspect-ratio: 16/9;
   display: flex;
   flex-direction: column;
-  color: white;
+  color: var(--heading-text-color);
   justify-content: center;
   align-items: center;
   line-height: 130px;
@@ -321,9 +332,9 @@ button#rules {
     "player-one-name player-two-name"
     "player-one-score player-two-score"; 
   grid-area: 2 / 2 / 3 / 4; 
-  background-color: #010a78;
-  border: 4px solid black;
-  color: white;
+  background-color: var(--element-bg-color);
+  border: 4px solid var(--border-color);
+  color: var(--heading-text-color);
   text-align: center;
   font-family: ITCKorinna;
   font-size: 20px;
@@ -370,42 +381,42 @@ input[type=name-text-two] {
 }
 
 .squares.one {
-  color: #d7a04b;
+  color: var(--clue-text-color);
   font-size: 40px;
   font-family: Swiss911;
   text-shadow: black 3px 3px;
 }
 
 .squares.two {
-  color: #d7a04b;
+  color: var(--clue-text-color);
   font-size: 40px;
   font-family: Swiss911;
   text-shadow: black 3px 3px;
 }
 
 .squares.three {
-  color: #d7a04b;
+  color: var(--clue-text-color);
   font-size: 40px;
   font-family: Swiss911;
   text-shadow: black 3px 3px;
 }
 
 .squares.four {
-  color: #d7a04b;
+  color: var(--clue-text-color);
   font-size: 40px;
   font-family: Swiss911;
   text-shadow: black 3px 3px;
 }
 
 .squares.five {
-  color: #d7a04b;
+  color: var(--clue-text-color);
   font-size: 40px;
   font-family: Swiss911;
   text-shadow: black 3px 3px;
 }
 
 .squares.six {
-  color: #d7a04b;
+  color: var(--clue-text-color);
   font-size: 40px;
   font-family: Swiss911;
   text-shadow: black 3px 3px;
@@ -413,8 +424,8 @@ input[type=name-text-two] {
 
 .winner {
   grid-area: 2 / 1 / 5 / 2;
-  background-color: #010a78;
-  border: 4px solid black;
+  background-color: var(--element-bg-color);
+  border: 4px solid var(--border-color);
   width: 800px;
   aspect-ratio: 16/9;
   display: flex;
