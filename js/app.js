@@ -24,7 +24,7 @@ const bigJeopardy = document.querySelector('.fjj')
 const finalClueEl = document.querySelector('.fjc')
 const lightDarkBtn = document.querySelector('#dark')
 
-let turn, winner, keyPressed, isFinalJeopardy, finalOneAmt, finalTwoAmt, finalOneResp, finalTwoResp
+let turn, winner, isFinalJeopardy, finalOneAmt, finalTwoAmt
 let playerOneScore = 0
 let playerTwoScore = 0
 let boardSq = [... squaresEl]
