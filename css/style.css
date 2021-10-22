@@ -51,6 +51,11 @@ body {
   background-color: #cbcee1;
 }
 
+/* #01042b */
+body.dark {
+  background-color: #01042b;
+}
+
 .container {
   display: grid; 
   grid-template-columns: 1.91fr 0.59fr 0.5fr; 

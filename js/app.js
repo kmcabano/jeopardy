@@ -22,6 +22,7 @@ const timerDisplay = document.querySelector('.timer')
 const bigFinal = document.querySelector('.fjf')
 const bigJeopardy = document.querySelector('.fjj')
 const finalClueEl = document.querySelector('.fjc')
+const lightDarkBtn = document.querySelector('#dark')
 
 let turn, winner, keyPressed, isFinalJeopardy, finalOneAmt, finalTwoAmt, finalOneResp, finalTwoResp
 let playerOneScore = 0
@@ -31,6 +32,7 @@ let boardAns = [... answersEl]
 
 nameOneInput.addEventListener('keydown', namePlayerOne)
 ruleBtn.addEventListener('click', closeRules)
+lightDarkBtn.addEventListener('click', toggleLightDark)
 
 const finalSong = new Audio('../audio/final-jeopardy.mp3')
 const correctSound = new Audio('../audio/correct-answer.mp3')
@@ -38,6 +40,10 @@ const wrongSound = new Audio ('../audio/wrong-answer.mp3')
 const dailyDoubleSound = new Audio('../audio/daily-double.mp3')
 
 init()
+
+function toggleLightDark() {
+  bodyEl.className = bodyEl.className === "dark" ? "" : "dark"
+}
 
 function closeRules() {
   ruleMsg.style.visibility = 'hidden'
@@ -310,8 +316,7 @@ answerBoardEl.removeEventListener('click', doubleAnswerSelect)
 }
 
 function checkFinalJeopardy() {
-  // const clueSq = boardSq.slice(6)
-  const clueSq = boardSq.slice(6, 7) //for testing purposes
+  const clueSq = boardSq.slice(6)
   if (clueSq.every((sq) => sq.classList.contains(`clicked`))) {
     isFinalJeopardy = true
     setUpFinalJeopardy()
